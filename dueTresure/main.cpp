@@ -4,6 +4,5 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	unsigned int randSeed = (unsigned int)time(NULL);
-	srand(randSeed);
+	
 }

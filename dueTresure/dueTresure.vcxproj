@@ -128,11 +128,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Scene\BaseScene.cpp" />
     <ClCompile Include="common\ImgMng.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\SceneMng.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scene\BaseScene.h" />
     <ClInclude Include="common\ImgMng.h" />
     <ClInclude Include="common\Vector2.h" />
     <ClInclude Include="Scene\SceneMng.h" />
