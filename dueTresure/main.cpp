@@ -1,4 +1,4 @@
-#include <DxLib.h>								// DxLibﾗｲﾌﾞﾗﾘを使用する
+#include <DxLib.h>								// DxLibﾗｲﾌﾞﾗﾘを使用する.
 #include "Scene\SceneMng.h"
 #include <time.h>
 
