@@ -5,8 +5,22 @@
 #include <tuple>
 #include <vector>
 #include <map>
+#include <Scene/LAYER.h>
 
 #define lpSceneMng SceneMng::GetInstance()
+
+
+enum class DRAW_QUE
+{
+	IMAGE,
+	X,
+	Y,
+	RAD,
+	ZORDER,
+	LAYER
+};
+
+using DrawQueT = std::tuple<int, double, double, double, int, LAYER>;
 
 class SceneMng
 {
@@ -36,6 +50,7 @@ public:
 	};
 
 	void Run(void);							// 1ÌÚ°Ñ‚ÌÙ°Ìß
+	bool AddDrawQue(DrawQueT dQue);			// ó‚¯æ‚Á‚½î•ñ‚ğŠm”F‚µ‚ÄÄŞÛ³Ø½Ä‚É“ü‚ê‚é
 
 	const Vector2 ScreenSize;
 	const Vector2 ScreenCenter;
@@ -47,8 +62,11 @@ public:
 
 private:
 	static SceneMng* sInstance;
-
+	void Draw();
 	unique_Base _activeScene;				// ÕÆ°¸Îß²İÀ‚Å¼°İ‚ğŠÇ—
+
+	std::map<LAYER, int> _screenID;
+	std::vector<DrawQueT> _drawList;		// •`‰æØ½Ä
 
 	SceneMng();
 	~SceneMng();

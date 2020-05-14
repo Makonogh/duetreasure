@@ -12,6 +12,74 @@ SceneMng::SceneMng() :ScreenSize{ 1280,720 }, ScreenCenter{ ScreenSize / 2 }, Ga
 {
 }
 
+void SceneMng::Draw()
+{
+	std::sort(_drawList.begin(), _drawList.end(), [](DrawQueT dQueA, DrawQueT dQueB)			// Ø½Ä‚ð¿°Ä‚·‚é
+	{
+		return
+			std::tie(std::get<static_cast<int>(DRAW_QUE::LAYER)>(dQueA), std::get<static_cast<int>(DRAW_QUE::ZORDER)>(dQueA))
+			<
+			std::tie(std::get<static_cast<int>(DRAW_QUE::LAYER)>(dQueB), std::get<static_cast<int>(DRAW_QUE::ZORDER)>(dQueB));
+	});
+
+	SetDrawScreen(DX_SCREEN_BACK);
+	ClsDrawScreen();
+	for (auto layer : LAYER())
+	{
+		SetDrawScreen(_screenID[layer]);
+		ClsDrawScreen();
+	}
+
+	for (auto dQue : _drawList)
+	{
+		double x, y, rad;
+		int id;
+		LAYER layer;
+
+		std::tie(id, x, y, rad, std::ignore, layer) = dQue;
+		if (_screenID[layer] != GetDrawScreen())
+		{
+			SetDrawScreen(_screenID[layer]);
+		}
+
+		DrawRotaGraph(
+			static_cast<int>(x),
+			static_cast<int>(y),
+			1.0,
+			rad,
+			id,
+			true
+		);
+	}
+
+	SetDrawScreen(DX_SCREEN_BACK);
+	ClsDrawScreen();
+	for (auto layer : LAYER())
+	{
+		DrawRotaGraph(ScreenCenter.x,
+			ScreenCenter.y,
+			1.0,
+			0,
+			_screenID[layer],
+			true);
+
+	}
+
+	ScreenFlip();
+}
+
+bool SceneMng::AddDrawQue(DrawQueT dQue)
+{
+	if (std::get <static_cast<int>(DRAW_QUE::IMAGE)>(dQue) <= 0)
+	{
+		// ‰æ‘œID‚ª•s³‚È‚Ì‚ÅA’Ç‰Á‚µ‚È‚¢
+		return false;
+	}
+	// Que‚ð’Ç‰Á
+	_drawList.emplace_back(dQue);
+
+	return true;
+}
 
 SceneMng::~SceneMng()
 {
@@ -29,6 +97,8 @@ void SceneMng::Run(void)
 		_activeScene = (*_activeScene).Update(std::move(_activeScene));
 	}
 }
+
+
 
 bool SceneMng::SysInit(void)
 {
