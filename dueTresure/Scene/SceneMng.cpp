@@ -116,6 +116,12 @@ bool SceneMng::SysInit(void)
 	}
 	SetDrawScreen(DX_SCREEN_BACK);							// ÊÞ¯¸ÊÞ¯Ì§‚É•`‰æ
 
+
+	for (auto layer : LAYER())
+	{
+		_screenID.try_emplace(layer, MakeScreen(ScreenSize.x, ScreenSize.y, true));
+	}
+
 	return false;
 
 }
