@@ -10,7 +10,7 @@ TitleScene::TitleScene()
 {
 	TRACE("À²ÄÙ¼°İ¶¬");
 	lpImgMng.GetID("À²ÄÙ”wŒi", "image/titleback.png");
-
+	
 }
 
 
@@ -21,12 +21,14 @@ TitleScene::~TitleScene()
 
 unique_Base TitleScene::Update(unique_Base own)
 {
-	lpSceneMng.AddDrawQue({ IMAGE_ID("À²ÄÙ”wŒi")[0], 0.0, 0.0, 0.0, 0, LAYER::BG });
+
 
 	if (lpSceneMng.Return && !lpSceneMng.OldReturn)
 	{
 		return std::make_unique<GameScene>();
 	}
+
+	lpSceneMng.AddDrawQue({ IMAGE_ID("À²ÄÙ”wŒi")[0], 600.0, 600.0, 0.0, INT_MAX, LAYER::BG });
 
 	return std::move(own);
 }
