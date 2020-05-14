@@ -28,8 +28,8 @@ unique_Base TitleScene::Update(unique_Base own)
 		return std::make_unique<GameScene>();
 	}
 
-	lpSceneMng.AddDrawQue({ IMAGE_ID("ю╡ды■w▄i")[0], 600.0, 600.0, 0.0, INT_MAX, LAYER::BG });
-	lpSceneMng.AddDrawQue({ IMAGE_ID("ю╡дыш╨ч")[0], 600.0, 600.0, 0.0, INT_MAX, LAYER::BG });
+	lpSceneMng.AddDrawQue({ IMAGE_ID("ю╡ды■w▄i")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y, 0.0, INT_MAX, LAYER::BG });
+	lpSceneMng.AddDrawQue({ IMAGE_ID("ю╡дыш╨ч")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y - 200, 0.0, INT_MAX, LAYER::UI });
 
 	return std::move(own);
 }
