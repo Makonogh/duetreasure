@@ -1,6 +1,6 @@
 #include "ImgMng.h"
 #include "DxLib.h"
-//#include <_debug/_DebugConOut.h>
+#include <_debug/_DebugConOut.h>
 
 std::unique_ptr<ImgMng, ImgMng::ImgMngDeleter> ImgMng::sInstance(new ImgMng());
 
@@ -11,7 +11,6 @@ ImgMng::ImgMng()
 
 ImgMng::~ImgMng()
 {
-
 }
 
 const VecInt & ImgMng::GetID(const std::string & key) 

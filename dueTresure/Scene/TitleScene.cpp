@@ -3,6 +3,7 @@
 #include "DxLib.h"
 #include <algorithm>
 #include "Scene\SceneMng.h"
+#include "common/ImgMng.h"
 
 
 TitleScene::TitleScene()

@@ -40,4 +40,3 @@ private:
 	std::map<std::string, VecInt> imgMap;
 
 };
-
