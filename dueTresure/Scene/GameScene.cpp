@@ -11,6 +11,7 @@ GameScene::GameScene()
 
 GameScene::~GameScene()
 {
+
 }
 
 unique_Base GameScene::Update(unique_Base own)

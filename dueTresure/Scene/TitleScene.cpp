@@ -13,6 +13,7 @@ TitleScene::TitleScene()
 
 TitleScene::~TitleScene()
 {
+
 }
 
 unique_Base TitleScene::Update(unique_Base own)
