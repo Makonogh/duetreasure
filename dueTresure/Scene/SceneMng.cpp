@@ -33,7 +33,7 @@ void SceneMng::Run(void)
 bool SceneMng::SysInit(void)
 {
 	// ---------¼½ÃÑˆ—
-	SetWindowText("RUN");
+	SetWindowText("dueTresure");
 	SetGraphMode(ScreenSize.x, ScreenSize.y, 16);			// 1280*720ÄŞ¯ÄA65536FÓ°ÄŞ‚Éİ’è
 	ChangeWindowMode(true);								// true:window false:ÌÙ½¸Ø°İ
 
