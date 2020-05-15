@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{89DADA2F-F927-46C5-B535-96F2175937DA}</ProjectGuid>
     <RootNamespace>dueTresure</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -131,7 +131,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Obj.cpp" />
+    <ClCompile Include="bg\Bg.cpp" />
+    <ClCompile Include="bg\GameBG.cpp" />
+    <ClCompile Include="obj\Obj.cpp" />
+    <ClCompile Include="bg\ResultBg.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\LAYER.cpp" />
     <ClCompile Include="Scene\ResultScene.cpp" />
@@ -140,10 +143,14 @@
     <ClCompile Include="common\ImgMng.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
+    <ClCompile Include="bg\TitleBg.cpp" />
     <ClCompile Include="_debug\_DebugConOut.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Obj.h" />
+    <ClInclude Include="bg\Bg.h" />
+    <ClInclude Include="bg\GameBG.h" />
+    <ClInclude Include="obj\Obj.h" />
+    <ClInclude Include="bg\ResultBg.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\LAYER.h" />
     <ClInclude Include="Scene\ResultScene.h" />
@@ -152,6 +159,7 @@
     <ClInclude Include="common\ImgMng.h" />
     <ClInclude Include="common\Vector2.h" />
     <ClInclude Include="Scene\TitleScene.h" />
+    <ClInclude Include="bg\TitleBg.h" />
     <ClInclude Include="_debug\_DebugConOut.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
