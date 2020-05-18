@@ -64,17 +64,6 @@ unique_Base TitleScene::Update(unique_Base own)
 		}
 	}
 
-	
-	/*if (lpSceneMng.Return && !lpSceneMng.OldReturn)
-	{
-		menuID++;
-		
-			return std::make_unique<GameScene>();
-		
-		
-	}*/
-
-
 	lpSceneMng.AddDrawQue({ IMAGE_ID("À²ÄÙ”wŒi")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y, 0.0, INT_MAX, LAYER::BG });
 	lpSceneMng.AddDrawQue({ IMAGE_ID("À²ÄÙÛºÞ")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y - 200, 0.0, INT_MAX, LAYER::UI });
 
