@@ -23,5 +23,7 @@ private:
 	int WKeyNew;
 	int SKeyOld;
 	int SKeyNew;
+	int sarada;		//(âºñºÅj
+	int sizeOffset;
 };
 
