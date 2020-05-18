@@ -14,6 +14,7 @@ public:
 	BaseScene();
 	virtual ~BaseScene();
 	virtual unique_Base Update(unique_Base) = 0;
+	int SceneCount;
 };
 
 
