@@ -1,13 +1,2 @@
-﻿  _DebugConOut.cpp
-  TitleScene.cpp
-  main.cpp
-  ImgMng.cpp
-  BaseScene.cpp
-  SceneMng.cpp
-  ResultScene.cpp
-  LAYER.cpp
-  GameScene.cpp
-  Obj.cpp
-  コードを生成中...
-  dueTresure.vcxproj -> C:\Users\asheg\OneDrive\デスクトップ\git\AGS2020S\duetreasure\dueTresure\Debug\dueTresure.exe
-  dueTresure.vcxproj -> C:\Users\asheg\OneDrive\デスクトップ\git\AGS2020S\duetreasure\dueTresure\Debug\dueTresure.pdb (Partial PDB)
+﻿  TitleScene.cpp
+  dueTresure.vcxproj -> C:\Users\yuuri\OneDrive\デスクトップ\チーム制作味噌汁\デュエットレジャー\duetreasure\dueTresure\Debug\dueTresure.exe
