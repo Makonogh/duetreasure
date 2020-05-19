@@ -18,6 +18,9 @@ TitleScene::TitleScene()
 	lpImgMng.GetID("選択アイコン", "image/pickel3.png", { 72, 72 }, {2, 1});
 	lpImgMng.GetID("ブラック", "image/menu/black.png");
 	lpImgMng.GetID("操作方法2", "image/menu/ope3.png");
+	lpImgMng.GetID("マロ", "image/maro.png");
+	lpImgMng.GetID("マロ子", "image/maroko.png");
+
 	GraphFilter(IMAGE_ID("ﾀｲﾄﾙ背景")[0], DX_GRAPH_FILTER_GAUSS, 2, 1200);
 
 	menuID = static_cast<int>(MENU::GAMESTART);
@@ -92,13 +95,14 @@ unique_Base TitleScene::Update(unique_Base own)
 	}
 
 	lpSceneMng.AddDrawQue({ IMAGE_ID("ﾀｲﾄﾙ背景")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y, 0.0, INT_MAX, LAYER::BG });
-	lpSceneMng.AddDrawQue({ IMAGE_ID("ﾀｲﾄﾙﾛｺﾞ")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y - 150, 0.0, INT_MAX, LAYER::UI });
+	lpSceneMng.AddDrawQue({ IMAGE_ID("ﾀｲﾄﾙﾛｺﾞ")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y - 200, 0.0, INT_MAX, LAYER::UI });
 	lpSceneMng.AddDrawQue({ IMAGE_ID("ｹﾞｰﾑｽﾀｰﾄ")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y, 0.0, INT_MAX, LAYER::UI });
 	lpSceneMng.AddDrawQue({ IMAGE_ID("操作方法")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y + 100, 0.0, INT_MAX, LAYER::UI });
 	lpSceneMng.AddDrawQue({ IMAGE_ID("ﾗﾝｷﾝｸﾞ")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y + 200, 0.0, INT_MAX, LAYER::UI });
 	lpSceneMng.AddDrawQue({ IMAGE_ID("出口")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y + 300, 0.0, INT_MAX, LAYER::UI });
 	lpSceneMng.AddDrawQue({ IMAGE_ID("選択アイコン")[sarada], lpSceneMng.ScreenCenter.x + sizeOffset, lpSceneMng.ScreenCenter.y +(menuID * 100), 0.0, INT_MAX, LAYER::UI });
-	
+	lpSceneMng.AddDrawQue({ IMAGE_ID("マロ子")[0], lpSceneMng.ScreenCenter.x - 450, lpSceneMng.ScreenCenter.y + 150, 0.0, INT_MAX, LAYER::UI });
+	lpSceneMng.AddDrawQue({ IMAGE_ID("マロ")[0], lpSceneMng.ScreenCenter.x + 500, lpSceneMng.ScreenCenter.y + 150, 0.0, INT_MAX, LAYER::UI });
 	SceneCount++;
 
 	return std::move(own);
