@@ -16,7 +16,7 @@ TitleScene::TitleScene()
 	lpImgMng.GetID("ﾗﾝｷﾝｸﾞ", "image/menu/titlerank.png");
 	lpImgMng.GetID("出口", "image/menu/exit.png");
 	lpImgMng.GetID("選択アイコン", "image/pickel3.png", { 72, 72 }, {2, 1});
-	lpImgMng.GetID("操作方法2", "image/menu/controler.png");
+	lpImgMng.GetID("操作方法2", "image/menu/ope2.png");
 	GraphFilter(IMAGE_ID("ﾀｲﾄﾙ背景")[0], DX_GRAPH_FILTER_GAUSS, 2, 1200);
 
 	menuID = static_cast<int>(MENU::GAMESTART);
@@ -77,10 +77,10 @@ unique_Base TitleScene::Update(unique_Base own)
 				lpSceneMng.AddDrawQue({ IMAGE_ID("操作方法2")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y, 0.0, INT_MAX, LAYER::SYSTEM });
 				
 			}
-				
 			break;
 		case static_cast<int>(MENU::RANKING) :
 			sizeOffset = 186;
+
 			break;
 		case static_cast<int>(MENU::EXIT) :
 			sizeOffset = 112;
