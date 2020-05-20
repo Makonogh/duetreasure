@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "Scene\SceneMng.h"
 #include "common/ImgMng.h"
+#include <bg/TitleBg.h>
 
 
 TitleScene::TitleScene()
@@ -20,7 +21,20 @@ TitleScene::TitleScene()
 	lpImgMng.GetID("操作方法2", "image/menu/ope3.png");
 	lpImgMng.GetID("マロ", "image/maro.png");
 	lpImgMng.GetID("マロ子", "image/maroko.png");
+
+	_bgList.emplace_back(new TitleBg({ UI_TYPE::BG, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y)}, lpSceneMng.ScreenSize}));
+	_bgList.emplace_back(new TitleBg({ UI_TYPE::LOGO, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) - 200.0}, lpSceneMng.ScreenSize }));
+	_bgList.emplace_back(new TitleBg({ UI_TYPE::GAMESTART, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) }, lpSceneMng.ScreenSize }));
+	_bgList.emplace_back(new TitleBg({ UI_TYPE::HOW_TO, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) + 100.0}, lpSceneMng.ScreenSize }));
+	_bgList.emplace_back(new TitleBg({ UI_TYPE::RANKING, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) + 200.0}, lpSceneMng.ScreenSize }));
+	_bgList.emplace_back(new TitleBg({ UI_TYPE::EXIT, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) + 300.0}, lpSceneMng.ScreenSize }));
 	
+	//_bgList.emplace_back(new TitleBg({ UI_TYPE::BLACK, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y)}, lpSceneMng.ScreenSize }));
+	//_bgList.emplace_back(new TitleBg({ UI_TYPE::CONTROLER, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y)}, lpSceneMng.ScreenSize }));
+	_bgList.emplace_back(new TitleBg({ UI_TYPE::MAROKO, {static_cast<double>(lpSceneMng.ScreenCenter.x) - 450.0, static_cast<double>(lpSceneMng.ScreenCenter.y) + 150.0}, lpSceneMng.ScreenSize }));
+	_bgList.emplace_back(new TitleBg({ UI_TYPE::MARO, {static_cast<double>(lpSceneMng.ScreenCenter.x) + 500.0, static_cast<double>(lpSceneMng.ScreenCenter.y) + 150.0}, lpSceneMng.ScreenSize }));
+
+
 
 	GraphFilter(IMAGE_ID("ﾀｲﾄﾙ背景")[0], DX_GRAPH_FILTER_GAUSS, 2, 1200);
 
@@ -67,7 +81,6 @@ unique_Base TitleScene::Update(unique_Base own)
 	{
 		sarada = 1;
 		SceneCount = 0;
-		
 	}
 
 	switch (menuID)
@@ -96,16 +109,11 @@ unique_Base TitleScene::Update(unique_Base own)
 		default:
 			break;
 	}
-
-	lpSceneMng.AddDrawQue({ IMAGE_ID("ﾀｲﾄﾙ背景")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y, 0.0, INT_MAX, LAYER::BG });
-	lpSceneMng.AddDrawQue({ IMAGE_ID("ﾀｲﾄﾙﾛｺﾞ")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y - 200, 0.0, INT_MAX, LAYER::UI });
-	lpSceneMng.AddDrawQue({ IMAGE_ID("ｹﾞｰﾑｽﾀｰﾄ")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y, 0.0, INT_MAX, LAYER::UI });
-	lpSceneMng.AddDrawQue({ IMAGE_ID("操作方法")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y + 100, 0.0, INT_MAX, LAYER::UI });
-	lpSceneMng.AddDrawQue({ IMAGE_ID("ﾗﾝｷﾝｸﾞ")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y + 200, 0.0, INT_MAX, LAYER::UI });
-	lpSceneMng.AddDrawQue({ IMAGE_ID("出口")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y + 300, 0.0, INT_MAX, LAYER::UI });
-	lpSceneMng.AddDrawQue({ IMAGE_ID("選択アイコン")[sarada], lpSceneMng.ScreenCenter.x + sizeOffset, lpSceneMng.ScreenCenter.y +(menuID * 100), 0.0, INT_MAX, LAYER::UI });
-	lpSceneMng.AddDrawQue({ IMAGE_ID("マロ子")[0], lpSceneMng.ScreenCenter.x - 450, lpSceneMng.ScreenCenter.y + 150, 0.0, INT_MAX, LAYER::UI });
-	lpSceneMng.AddDrawQue({ IMAGE_ID("マロ")[0], lpSceneMng.ScreenCenter.x + 500, lpSceneMng.ScreenCenter.y + 150, 0.0, INT_MAX, LAYER::UI });
+	
+	for (auto data : _bgList)
+	{
+		(*data).Draw();
+	}
 	SceneCount++;
 
 	return std::move(own);

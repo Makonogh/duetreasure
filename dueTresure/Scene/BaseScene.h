@@ -2,6 +2,7 @@
 #include <memory>
 #include <vector>
 #include <_debug/_DebugConOut.h>
+#include <bg/Bg.h>
 
 class BaseScene;
 

@@ -8,5 +8,7 @@ public:
 	ResultScene();
 	~ResultScene();
 	unique_Base Update(unique_Base own);
+
+
 };
 

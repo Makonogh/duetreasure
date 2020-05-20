@@ -25,5 +25,6 @@ private:
 	int SKeyNew;
 	int sarada;		//(âºñºÅj
 	int sizeOffset;
+	std::vector<sharedBG> _bgList;
 };
 
