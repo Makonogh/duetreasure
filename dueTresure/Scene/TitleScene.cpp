@@ -20,6 +20,7 @@ TitleScene::TitleScene()
 	lpImgMng.GetID("操作方法2", "image/menu/ope3.png");
 	lpImgMng.GetID("マロ", "image/maro.png");
 	lpImgMng.GetID("マロ子", "image/maroko.png");
+	
 
 	GraphFilter(IMAGE_ID("ﾀｲﾄﾙ背景")[0], DX_GRAPH_FILTER_GAUSS, 2, 1200);
 
@@ -66,6 +67,7 @@ unique_Base TitleScene::Update(unique_Base own)
 	{
 		sarada = 1;
 		SceneCount = 0;
+		
 	}
 
 	switch (menuID)
@@ -76,6 +78,7 @@ unique_Base TitleScene::Update(unique_Base own)
 			break;
 		case static_cast<int>(MENU::HOW_TO) :
 			sizeOffset = 162;
+			//PlaySoundFile("sound/ahiru.mp3",DX_PLAYTYPE_BACK);
 			if (sarada == 1)
 			{
 				lpSceneMng.AddDrawQue({ IMAGE_ID("操作方法2")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y, 0.0, 1, LAYER::SYSTEM });
