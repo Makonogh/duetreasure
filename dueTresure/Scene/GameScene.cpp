@@ -23,4 +23,4 @@ unique_Base GameScene::Update(unique_Base own)
 	return own;
 }
 
-// ƒLƒƒƒ‰
+// ƒLƒƒƒ‰no“®‚«
