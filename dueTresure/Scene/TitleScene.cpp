@@ -80,8 +80,14 @@ unique_Base TitleScene::Update(unique_Base own)
 
 	if (lpSceneMng.Return && !lpSceneMng.OldReturn)
 	{
-		sarada = 1;
-		SceneCount = 0;
+		if (sarada == 0)
+		{
+			sarada = 1;
+			SceneCount = 0;
+		}
+		else {
+			sarada = 0;
+		}
 	}
 
 	switch (menuID)
