@@ -9,6 +9,11 @@
 
 TitleScene::TitleScene()
 {
+	//変数の初期化
+	sarada = 0;
+	SceneCount = 0;
+	sizeOffset = 118;
+
 	TRACE("ﾀｲﾄﾙｼｰﾝ生成");
 	lpImgMng.GetID("ﾀｲﾄﾙ背景", "image/titleback.png");
 	lpImgMng.GetID("ﾀｲﾄﾙﾛｺﾞ", "image/title.png");
@@ -28,7 +33,7 @@ TitleScene::TitleScene()
 	_bgList.emplace_back(new TitleBg({ UI_TYPE::HOW_TO, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) + 100.0}, lpSceneMng.ScreenSize }));
 	_bgList.emplace_back(new TitleBg({ UI_TYPE::RANKING, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) + 200.0}, lpSceneMng.ScreenSize }));
 	_bgList.emplace_back(new TitleBg({ UI_TYPE::EXIT, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) + 300.0}, lpSceneMng.ScreenSize }));
-	
+	//_bgList.emplace_back(new TitleBg({ UI_TYPE::ICON, {static_cast<double>(lpSceneMng.ScreenCenter.x) + sizeOffset, static_cast<double>(lpSceneMng.ScreenCenter.y) + (menuID * 100)}, lpSceneMng.ScreenSize }));
 	//_bgList.emplace_back(new TitleBg({ UI_TYPE::BLACK, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y)}, lpSceneMng.ScreenSize }));
 	//_bgList.emplace_back(new TitleBg({ UI_TYPE::CONTROLER, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y)}, lpSceneMng.ScreenSize }));
 	_bgList.emplace_back(new TitleBg({ UI_TYPE::MAROKO, {static_cast<double>(lpSceneMng.ScreenCenter.x) - 450.0, static_cast<double>(lpSceneMng.ScreenCenter.y) + 150.0}, lpSceneMng.ScreenSize }));
@@ -40,10 +45,7 @@ TitleScene::TitleScene()
 
 	menuID = static_cast<int>(MENU::GAMESTART);
 
-	//変数の初期化
-	sarada = 0;
-	SceneCount = 0;
-	sizeOffset = 0;
+	
 }
 
 
@@ -58,8 +60,7 @@ unique_Base TitleScene::Update(unique_Base own)
 	WKeyNew = CheckHitKey(KEY_INPUT_W);
 	SKeyOld = SKeyNew;
 	SKeyNew = CheckHitKey(KEY_INPUT_S);
-
-
+	
 	if (WKeyNew && !WKeyOld)
 	{
 		menuID--;
@@ -96,6 +97,7 @@ unique_Base TitleScene::Update(unique_Base own)
 			{
 				lpSceneMng.AddDrawQue({ IMAGE_ID("操作方法2")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y, 0.0, 1, LAYER::SYSTEM });
 				lpSceneMng.AddDrawQue({ IMAGE_ID("ブラック")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y, 0.0, 0, LAYER::SYSTEM});
+
 			}
 			break;
 		case static_cast<int>(MENU::RANKING) :
@@ -108,11 +110,13 @@ unique_Base TitleScene::Update(unique_Base own)
 		default:
 			break;
 	}
-	
+
 	for (auto data : _bgList)
 	{
 		(*data).Draw();
 	}
+	lpSceneMng.AddDrawQue({ IMAGE_ID("選択アイコン")[sarada], lpSceneMng.ScreenCenter.x + sizeOffset, lpSceneMng.ScreenCenter.y + (menuID * 100), 0.0, 0, LAYER::UI });
+
 	SceneCount++;
 
 	return std::move(own);
