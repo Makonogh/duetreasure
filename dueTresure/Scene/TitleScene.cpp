@@ -96,7 +96,6 @@ unique_Base TitleScene::Update(unique_Base own)
 			{
 				lpSceneMng.AddDrawQue({ IMAGE_ID("操作方法2")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y, 0.0, 1, LAYER::SYSTEM });
 				lpSceneMng.AddDrawQue({ IMAGE_ID("ブラック")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y, 0.0, 0, LAYER::SYSTEM});
-				
 			}
 			break;
 		case static_cast<int>(MENU::RANKING) :
