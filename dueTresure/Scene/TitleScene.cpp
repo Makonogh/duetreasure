@@ -85,9 +85,7 @@ unique_Base TitleScene::Update(unique_Base own)
 			sarada = 1;
 			SceneCount = 0;
 		}
-		else {
-			sarada = 0;
-		}
+		else sarada = 0;
 	}
 
 	switch (menuID)
@@ -108,7 +106,6 @@ unique_Base TitleScene::Update(unique_Base own)
 			break;
 		case static_cast<int>(MENU::RANKING) :
 			sizeOffset = 186;
-
 			break;
 		case static_cast<int>(MENU::EXIT) :
 			sizeOffset = 112;
