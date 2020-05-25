@@ -6,6 +6,7 @@
 #include <vector>
 #include <map>
 #include <Scene/LAYER.h>
+#include <Input/InputState.h>
 
 #define lpSceneMng SceneMng::GetInstance()
 
@@ -59,7 +60,7 @@ public:
 
 	bool OldReturn;							// 1フレーム前のエンターキーの押下フラグ
 	bool Return;							// 現在のエンターキーの押下フラグ
-
+	InputState InputState;
 private:
 	static SceneMng* sInstance;
 	void Draw();

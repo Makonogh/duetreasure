@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <_debug/_DebugConOut.h>
 
+
 SceneMng* SceneMng::sInstance = nullptr;
 
 SceneMng::SceneMng() :ScreenSize{ 1366,768 }, ScreenCenter{ ScreenSize / 2 }, GameSize{ ScreenSize.x,576 }, UISize{ ScreenSize - GameSize }
@@ -93,8 +94,9 @@ void SceneMng::Run(void)
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
 		_drawList.clear();				// —v‘f‚ð¸Ø±‚·‚é
-		OldReturn = Return;
-		Return = CheckHitKey(KEY_INPUT_RETURN);
+		InputState.Update();
+		//OldReturn = Return;
+		//Return = CheckHitKey(KEY_INPUT_RETURN);
 		_activeScene = (*_activeScene).Update(std::move(_activeScene));
 
 		Draw();

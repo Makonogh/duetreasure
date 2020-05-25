@@ -3,7 +3,7 @@
 
 INPUT_ID begin(INPUT_ID)
 {
-	return INPUT_ID::LEFT;
+	return INPUT_ID::LEFT1;
 }
 
 INPUT_ID end(INPUT_ID)

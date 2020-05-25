@@ -3,11 +3,11 @@
 #include <vector>
 #include <_debug/_DebugConOut.h>
 #include <bg/Bg.h>
+#include <Input/InputState.h>
 
 class BaseScene;
 
 using unique_Base = std::unique_ptr<BaseScene>;
-
 
 class BaseScene
 {
