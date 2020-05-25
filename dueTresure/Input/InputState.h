@@ -15,6 +15,7 @@ public:
 	const KeyPair& state(INPUT_ID id)const;
 	bool state(INPUT_ID id, int data);
 	void SetOld(void);
+
 private:
 	KeyMap _state;
 };

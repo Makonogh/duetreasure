@@ -18,6 +18,7 @@ InputState::~InputState()
 void InputState::Update(void)
 {
 	InputState::SetOld();
+
 	if (CheckHitKey(KEY_INPUT_A) == 1)
 	{
 		_state[INPUT_ID::LEFT1].first = 1;
@@ -134,5 +135,4 @@ void InputState::SetOld(void)
 			_state.emplace(id, KeyPair{ 0,1 });
 		}
 	}
-
 }
