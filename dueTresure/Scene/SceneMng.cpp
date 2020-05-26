@@ -94,11 +94,8 @@ void SceneMng::Run(void)
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
 		_drawList.clear();				// —v‘f‚ð¸Ø±‚·‚é
-		InputState.Update();
-		//OldReturn = Return;
-		//Return = CheckHitKey(KEY_INPUT_RETURN);
+		lpInput.Update();
 		_activeScene = (*_activeScene).Update(std::move(_activeScene));
-
 		Draw();
 	}
 }

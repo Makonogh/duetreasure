@@ -78,7 +78,7 @@ unique_Base TitleScene::Update(unique_Base own)
 		}
 	}
 
-	if (/*lpSceneMng.InputState.state(INPUT_ID::START).first == 1&&*/ lpSceneMng.InputState.state(INPUT_ID::START).second == 0)
+	if (lpInput.state(INPUT_ID::SELECT).first == 1&& lpInput.state(INPUT_ID::START).second == 0 && sarada == 0)
 	{
 		if (sarada == 0)
 		{
