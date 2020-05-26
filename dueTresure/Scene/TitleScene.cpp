@@ -77,15 +77,16 @@ unique_Base TitleScene::Update(unique_Base own)
 			menuID = static_cast<int>(MENU::GAMESTART);
 		}
 	}
-
-	if (lpInput.state(INPUT_ID::SELECT).first == 1&& lpInput.state(INPUT_ID::START).second == 0 && sarada == 0)
+	TRACE("%d", lpInput.state(INPUT_ID::SELECT).first);
+	TRACE("%d", lpInput.state(INPUT_ID::SELECT).second);
+	if (lpInput.state(INPUT_ID::SELECT).first == 1 && lpInput.state(INPUT_ID::SELECT).second == 0)
 	{
 		if (sarada == 0)
 		{
 			sarada = 1;
 			SceneCount = 0;
 		}
-		else sarada = 0;
+   		else sarada = 0;
 	}
 
 	switch (menuID)

@@ -74,5 +74,5 @@ void InputState::SetOld(void)
 	{
 		_state[id].second = _state[id].first;
 	}
-	TRACE("%d", lpInput.state(INPUT_ID::SELECT).second);
+
 }
