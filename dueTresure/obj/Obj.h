@@ -23,7 +23,8 @@ class Obj
 public:
 	Obj();
 	virtual ~Obj();
-
+	virtual void Update(sharedObj& list);
+	virtual void Update();
 	bool SetAnim(const STATE state, AnimVector& data);	// アニメーションのセット
 	Vector2Dbl _pos;									// 座標
 	Vector2Dbl _size;									// サイズ
