@@ -12,7 +12,7 @@ TitleScene::TitleScene()
 	//変数の初期化
 	sarada = 0;
 	SceneCount = 0;
-	sizeOffset = 118;
+	IntervalOffset = 118;
 
 	TRACE("ﾀｲﾄﾙｼｰﾝ生成");
 	lpImgMng.GetID("ﾀｲﾄﾙ背景", "image/titleback.png");
@@ -56,12 +56,7 @@ TitleScene::~TitleScene()
 
 unique_Base TitleScene::Update(unique_Base own)
 {
-	WKeyOld = WKeyNew;
-	WKeyNew = CheckHitKey(KEY_INPUT_W);
-	SKeyOld = SKeyNew;
-	SKeyNew = CheckHitKey(KEY_INPUT_S);
-	
-	if (WKeyNew && !WKeyOld)
+	if (lpInput.state(INPUT_ID::UP1).first == 1 && lpInput.state(INPUT_ID::UP1).second == 0)
 	{
 		menuID--;
 		if (menuID < static_cast<int>(MENU::GAMESTART))
@@ -69,7 +64,7 @@ unique_Base TitleScene::Update(unique_Base own)
 			menuID = static_cast<int>(MENU::EXIT);
 		}
 	}
-	if (SKeyNew && !SKeyOld)
+	if (lpInput.state(INPUT_ID::DOWN1).first == 1 && lpInput.state(INPUT_ID::DOWN1).second == 0)
 	{
 		menuID++;
 		if (menuID > static_cast<int>(MENU::EXIT))
@@ -81,35 +76,33 @@ unique_Base TitleScene::Update(unique_Base own)
 	TRACE("%d", lpInput.state(INPUT_ID::SELECT).second);
 	if (lpInput.state(INPUT_ID::SELECT).first == 1 && lpInput.state(INPUT_ID::SELECT).second == 0)
 	{
-		if (sarada == 0)
-		{
-			sarada = 1;
-			SceneCount = 0;
-		}
-   		else sarada = 0;
+		SelectPath();
 	}
 
 	switch (menuID)
 	{
 		case static_cast<int>(MENU::GAMESTART) :
-			sizeOffset = 118;
+			IntervalOffset = 118;
 			if(SceneCount > 60 && sarada == 1)return std::make_unique<GameScene>();
 			break;
 		case static_cast<int>(MENU::HOW_TO) :
-			sizeOffset = 162;
+			IntervalOffset = 162;
 			//PlaySoundFile("sound/ahiru.mp3",DX_PLAYTYPE_BACK);
-			if (sarada == 1)
+			if (SceneCount > 60 && sarada == 1)
 			{
 				lpSceneMng.AddDrawQue({ IMAGE_ID("操作方法2")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y, 0.0, 1, LAYER::SYSTEM });
 				lpSceneMng.AddDrawQue({ IMAGE_ID("ブラック")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y, 0.0, 0, LAYER::SYSTEM});
-
 			}
 			break;
 		case static_cast<int>(MENU::RANKING) :
-			sizeOffset = 186;
+			IntervalOffset = 186;
 			break;
 		case static_cast<int>(MENU::EXIT) :
-			sizeOffset = 112;
+			IntervalOffset = 112;
+			if (SceneCount > 60 && sarada == 1)
+			{
+				lpSceneMng.ExitFlag = true;
+			}
 			break;
 		default:
 			break;
@@ -119,10 +112,11 @@ unique_Base TitleScene::Update(unique_Base own)
 	{
 		(*data).Draw();
 	}
-	lpSceneMng.AddDrawQue({ IMAGE_ID("選択アイコン")[sarada], lpSceneMng.ScreenCenter.x + sizeOffset, lpSceneMng.ScreenCenter.y + (menuID * 100), 0.0, 0, LAYER::UI });
+	lpSceneMng.AddDrawQue({ IMAGE_ID("選択アイコン")[sarada], lpSceneMng.ScreenCenter.x + IntervalOffset, lpSceneMng.ScreenCenter.y + (menuID * 100), 0.0, 0, LAYER::UI });
 
 	SceneCount++;
 
 	return std::move(own);
 }
+
 

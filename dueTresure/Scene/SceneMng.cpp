@@ -11,6 +11,7 @@ SceneMng* SceneMng::sInstance = nullptr;
 
 SceneMng::SceneMng() :ScreenSize{ 1366,768 }, ScreenCenter{ ScreenSize / 2 }, GameSize{ ScreenSize.x,576 }, UISize{ ScreenSize - GameSize }
 {
+	ExitFlag = 0;
 }
 
 void SceneMng::Draw()
@@ -97,6 +98,10 @@ void SceneMng::Run(void)
 		lpInput.Update();
 		_activeScene = (*_activeScene).Update(std::move(_activeScene));
 		Draw();
+		if (ExitFlag == 1)
+		{
+			break;
+		}
 	}
 }
 

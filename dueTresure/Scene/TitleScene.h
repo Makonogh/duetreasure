@@ -18,15 +18,10 @@ public:
 	~TitleScene();
 	unique_Base Update(unique_Base own);
 private:
-	int menuID;
-	int OldmenuID;
 	int WKeyOld;
 	int WKeyNew;
 	int SKeyOld;
 	int SKeyNew;
-	int sarada;		//(âºñºÅj
-	int sizeOffset;
-
 	unique_Base iconDraw;
 
 	std::vector<sharedBG> _bgList;

@@ -60,6 +60,7 @@ public:
 
 	bool OldReturn;							// 1フレーム前のエンターキーの押下フラグ
 	bool Return;							// 現在のエンターキーの押下フラグ
+	bool ExitFlag;
 
 private:
 	static SceneMng* sInstance;
@@ -72,6 +73,7 @@ private:
 	SceneMng();
 	~SceneMng();
 	bool SysInit(void);						// ｼｽﾃﾑ全体の初期化
+
 
 };
 
