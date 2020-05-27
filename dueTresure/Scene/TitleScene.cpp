@@ -1,5 +1,6 @@
 #include "TitleScene.h"
 #include "GameScene.h"
+#include "RankScene.h"
 #include "DxLib.h"
 #include <algorithm>
 #include "Scene\SceneMng.h"
@@ -96,13 +97,11 @@ unique_Base TitleScene::Update(unique_Base own)
 			break;
 		case static_cast<int>(MENU::RANKING) :
 			IntervalOffset = 186;
+			if (SceneCount > 60 && sarada == 1)return std::make_unique<RankScene>();
 			break;
 		case static_cast<int>(MENU::EXIT) :
 			IntervalOffset = 112;
-			if (SceneCount > 60 && sarada == 1)
-			{
-				lpSceneMng.ExitFlag = true;
-			}
+			if (SceneCount > 60 && sarada == 1)lpSceneMng.ExitFlag = true;
 			break;
 		default:
 			break;
