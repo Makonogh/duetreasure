@@ -39,9 +39,6 @@ TitleScene::TitleScene()
 	//_bgList.emplace_back(new TitleBg({ UI_TYPE::CONTROLER, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y)}, lpSceneMng.ScreenSize }));
 	_bgList.emplace_back(new TitleBg({ UI_TYPE::MAROKO, {static_cast<double>(lpSceneMng.ScreenCenter.x) - 450.0, static_cast<double>(lpSceneMng.ScreenCenter.y) + 150.0}, lpSceneMng.ScreenSize }));
 	_bgList.emplace_back(new TitleBg({ UI_TYPE::MARO, {static_cast<double>(lpSceneMng.ScreenCenter.x) + 500.0, static_cast<double>(lpSceneMng.ScreenCenter.y) + 150.0}, lpSceneMng.ScreenSize }));
-
-
-
 	GraphFilter(IMAGE_ID("À²ÄÙ”wŒi")[0], DX_GRAPH_FILTER_GAUSS, 2, 1200);
 
 	menuID = static_cast<int>(MENU::GAMESTART);
@@ -57,28 +54,11 @@ TitleScene::~TitleScene()
 
 unique_Base TitleScene::Update(unique_Base own)
 {
-	if (lpInput.state(INPUT_ID::UP1).first == 1 && lpInput.state(INPUT_ID::UP1).second == 0)
-	{
-		menuID--;
-		if (menuID < static_cast<int>(MENU::GAMESTART))
-		{
-			menuID = static_cast<int>(MENU::EXIT);
-		}
-	}
-	if (lpInput.state(INPUT_ID::DOWN1).first == 1 && lpInput.state(INPUT_ID::DOWN1).second == 0)
-	{
-		menuID++;
-		if (menuID > static_cast<int>(MENU::EXIT))
-		{
-			menuID = static_cast<int>(MENU::GAMESTART);
-		}
-	}
+	
 	TRACE("%d", lpInput.state(INPUT_ID::SELECT).first);
 	TRACE("%d", lpInput.state(INPUT_ID::SELECT).second);
-	if (lpInput.state(INPUT_ID::SELECT).first == 1 && lpInput.state(INPUT_ID::SELECT).second == 0)
-	{
-		SelectPath();
-	}
+	
+	SelectPath();
 
 	switch (menuID)
 	{
