@@ -5,6 +5,19 @@
 #include <bg/Bg.h>
 #include <Input/InputState.h>
 
+enum class MENU 
+{
+	GAMESTART,
+	HOW_TO,
+	RANKING,
+	EXIT,
+	BACK,
+	RESTART,
+	TITLE,
+	MAX
+};
+
+
 class BaseScene;
 
 using unique_Base = std::unique_ptr<BaseScene>;
@@ -19,7 +32,9 @@ public:
 	bool sarada;		//(âºñºÅj
 	int menuID;
 	int IntervalOffset;
-	void SelectPath(void);
+	void SelectPath();
+	std::vector<MENU> _menuList;
+
 };
 
 
