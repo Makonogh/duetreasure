@@ -15,7 +15,8 @@ enum class UI_TYPE
 	BLACK,
 	CONTROLER,
 	MARO,
-	MAROKO
+	MAROKO,
+	MAX
 };
 
 using BG_DATA = std::tuple<UI_TYPE, Vector2Dbl, Vector2>;

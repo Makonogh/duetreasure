@@ -5,17 +5,17 @@
 #include <bg/Bg.h>
 #include <Input/InputState.h>
 
-enum class MENU 
-{
-	GAMESTART,
-	HOW_TO,
-	RANKING,
-	EXIT,
-	BACK,
-	RESTART,
-	TITLE,
-	MAX
-};
+//enum class MENU 
+//{
+//	GAMESTART,
+//	HOW_TO,
+//	RANKING,
+//	EXIT,
+//	BACK,
+//	RESTART,
+//	TITLE,
+//	MAX
+//};
 
 
 class BaseScene;
@@ -33,7 +33,7 @@ public:
 	int menuID;
 	int IntervalOffset;
 	void SelectPath();
-	std::vector<MENU> _menuList;
+	//std::vector<MENU> _menuList;
 
 };
 

@@ -41,7 +41,7 @@ TitleScene::TitleScene()
 	_bgList.emplace_back(new TitleBg({ UI_TYPE::MARO, {static_cast<double>(lpSceneMng.ScreenCenter.x) + 500.0, static_cast<double>(lpSceneMng.ScreenCenter.y) + 150.0}, lpSceneMng.ScreenSize }));
 	GraphFilter(IMAGE_ID("À²ÄÙ”wŒi")[0], DX_GRAPH_FILTER_GAUSS, 2, 1200);
 
-	menuID = static_cast<int>(MENU::GAMESTART);
+	menuID = static_cast<int>(T_MENU::T_GAMESTART);
 
 	
 }
@@ -58,15 +58,34 @@ unique_Base TitleScene::Update(unique_Base own)
 	TRACE("%d", lpInput.state(INPUT_ID::SELECT).first);
 	TRACE("%d", lpInput.state(INPUT_ID::SELECT).second);
 	
+	//‘I‘ð
+	if (lpInput.state(INPUT_ID::UP1).first == 1 && lpInput.state(INPUT_ID::UP1).second == 0)
+	{
+		menuID--;
+		if (menuID < T_GAMESTART)
+		{
+			menuID = T_EXIT;
+		}
+	}
+	if (lpInput.state(INPUT_ID::DOWN1).first == 1 && lpInput.state(INPUT_ID::DOWN1).second == 0)
+	{
+		menuID++;
+		if (menuID > T_EXIT)
+		{
+			menuID = T_GAMESTART;
+		}
+	}
+
+
 	SelectPath();
 
 	switch (menuID)
 	{
-		case static_cast<int>(MENU::GAMESTART) :
+		case static_cast<int>(T_MENU::T_GAMESTART) :
 			IntervalOffset = 118;
 			if(SceneCount > 60 && sarada == 1)return std::make_unique<GameScene>();
 			break;
-		case static_cast<int>(MENU::HOW_TO) :
+		case static_cast<int>(T_MENU::T_HOW_TO) :
 			IntervalOffset = 162;
 			//PlaySoundFile("sound/ahiru.mp3",DX_PLAYTYPE_BACK);
 			if (SceneCount > 60 && sarada == 1)
@@ -75,11 +94,11 @@ unique_Base TitleScene::Update(unique_Base own)
 				lpSceneMng.AddDrawQue({ IMAGE_ID("ƒuƒ‰ƒbƒN")[0], lpSceneMng.ScreenCenter.x, lpSceneMng.ScreenCenter.y, 0.0, 0, LAYER::SYSTEM});
 			}
 			break;
-		case static_cast<int>(MENU::RANKING) :
+		case static_cast<int>(T_MENU::T_RANKING) :
 			IntervalOffset = 186;
 			if (SceneCount > 60 && sarada == 1)return std::make_unique<RankScene>();
 			break;
-		case static_cast<int>(MENU::EXIT) :
+		case static_cast<int>(T_MENU::T_EXIT) :
 			IntervalOffset = 112;
 			if (SceneCount > 60 && sarada == 1)lpSceneMng.ExitFlag = true;
 			break;
