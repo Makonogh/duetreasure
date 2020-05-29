@@ -6,6 +6,15 @@ Player::Player()
 {
 }
 
+Player::Player(Vector2Dbl pos, Vector2Dbl size, player pl)
+{
+	_pos = pos;
+	_size = size;
+	plType = pl;
+	PlayerCount = 0;
+	Init();
+}
+
 
 Player::~Player()
 {

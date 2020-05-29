@@ -11,7 +11,6 @@ enum class STATE
 {
 	NORMAL,		// 通常状態
 	JUMP,		// ジャンプ
-	FALL,		// 転倒
 	MAX
 };
 
@@ -25,11 +24,15 @@ public:
 	virtual ~Obj();
 	virtual void Update(sharedObj& list);
 	virtual void Update();
+	void Draw(void);
+	void Draw(int id);
 	bool SetAnim(const STATE state, AnimVector& data);	// アニメーションのセット
 	Vector2Dbl _pos;									// 座標
 	Vector2Dbl _size;									// サイズ
 	STATE _state;										// 状態
 	int PlayerCount;									// プレイヤー用アニメーションフレーム
+	unsigned int _animCount;							// 見出しから何回ﾙｰﾌﾟしてるか
+	unsigned int _animFrame;							// なんﾌﾚｰﾑか
 private:
 	std::map<STATE, AnimVector>_animMap;
 };
