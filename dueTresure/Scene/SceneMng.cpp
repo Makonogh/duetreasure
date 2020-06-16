@@ -9,7 +9,7 @@
 
 SceneMng* SceneMng::sInstance = nullptr;
 
-SceneMng::SceneMng() :ScreenSize{ 1366,768 }, ScreenCenter{ ScreenSize / 2 }, GameSize{ ScreenSize.x,576 }, UISize{ ScreenSize - GameSize }
+SceneMng::SceneMng() :ScreenSize{ 1366.0,768.0 }, ScreenCenter{ ScreenSize.x / 2 ,ScreenSize.y / 2 }
 {
 	ExitFlag = 0;
 }

@@ -8,7 +8,7 @@ Bg::Bg()
 {
 }
 
-void Bg::Updata()
+void Bg::Update()
 {
 }
 

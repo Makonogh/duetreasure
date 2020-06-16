@@ -3,6 +3,8 @@
 #include <map>
 #include <vector>
 #include "Vector2.h"
+#include <string>
+
 
 using VecInt = std::vector<int>;
 

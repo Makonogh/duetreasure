@@ -55,9 +55,6 @@ TitleScene::~TitleScene()
 unique_Base TitleScene::Update(unique_Base own)
 {
 	
-	TRACE("%d", lpInput.state(INPUT_ID::SELECT).first);
-	TRACE("%d", lpInput.state(INPUT_ID::SELECT).second);
-	
 	//‘I‘ð
 	if (lpInput.state(INPUT_ID::UP1).first == 1 && lpInput.state(INPUT_ID::UP1).second == 0)
 	{

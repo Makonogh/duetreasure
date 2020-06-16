@@ -27,13 +27,14 @@ public:
 	void Draw(void);
 	void Draw(int id);
 	bool SetAnim(const STATE state, AnimVector& data);	// アニメーションのセット
-	Vector2Dbl _pos;									// 座標
-	Vector2Dbl _size;									// サイズ
-	STATE _state;										// 状態
 	int PlayerCount;									// プレイヤー用アニメーションフレーム
 	unsigned int _animCount;							// 見出しから何回ﾙｰﾌﾟしてるか
 	unsigned int _animFrame;							// なんﾌﾚｰﾑか
 private:
 	std::map<STATE, AnimVector>_animMap;
+protected:
+	Vector2Dbl _pos;									// 座標
+	Vector2Dbl _size;									// サイズ
+	STATE _state;										// 状態
 };
 

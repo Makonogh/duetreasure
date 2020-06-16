@@ -21,6 +21,5 @@ private:
 	T_MENU menu;
 	unique_Base iconDraw;
 	std::vector<sharedBG> _bgList;
-
 };
 

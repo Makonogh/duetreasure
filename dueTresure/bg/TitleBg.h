@@ -19,7 +19,7 @@ enum class UI_TYPE
 	MAX
 };
 
-using BG_DATA = std::tuple<UI_TYPE, Vector2Dbl, Vector2>;
+using BG_DATA = std::tuple<UI_TYPE, Vector2Dbl, Vector2Dbl>;
 
 class TitleBg :
 	public Bg

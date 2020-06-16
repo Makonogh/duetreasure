@@ -53,10 +53,8 @@ public:
 	void Run(void);							// 1ﾌﾚｰﾑのﾙｰﾌﾟ
 	bool AddDrawQue(DrawQueT dQue);			// 受け取った情報を確認してﾄﾞﾛｳﾘｽﾄに入れる
 
-	const Vector2 ScreenSize;
-	const Vector2 ScreenCenter;
-	const Vector2 GameSize;
-	const Vector2 UISize;
+	const Vector2Dbl ScreenSize;
+	const Vector2Dbl ScreenCenter;
 
 	bool OldReturn;							// 1フレーム前のエンターキーの押下フラグ
 	bool Return;							// 現在のエンターキーの押下フラグ

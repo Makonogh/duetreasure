@@ -19,7 +19,7 @@ class Bg
 {
 public:
 	Bg();
-	virtual void Updata();
+	virtual void Update();
 	void Draw(void);
 	virtual ~Bg();
 	Vector2Dbl _pos;
