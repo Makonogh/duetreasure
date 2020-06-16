@@ -1,13 +1,11 @@
 #include "Player.h"
 #include "common/ImgMng.h"
 
-
-
 Player::Player()
 {
 }
 
-Player::Player(Vector2Dbl pos, Vector2Dbl size, player pl)
+Player::Player(Vector2Dbl pos, Vector2Dbl size, PLAYER pl)
 {
 	_pos = pos;
 	_size = size;
@@ -33,14 +31,14 @@ void Player::Init(void)
 	data.reserve(15);
 	for (int i = 0; i < 15; i++)
 	{
-		data.emplace_back(IMAGE_ID("·¬×")[i], (i + 1) * 2);
+		data.emplace_back(IMAGE_ID("‘Ò‹@")[i], (i + 1) * 2);
 	}
 	SetAnim(STATE::NORMAL, data);
 
-	data.reserve(15);
-	for (int i = 0; i < 15; i++)
-	{
-		data.emplace_back(IMAGE_ID("¼Þ¬ÝÌß")[i], (i + 1) * 2);
-	}
-	SetAnim(STATE::JUMP, data);
+	//data.reserve(15);
+	//for (int i = 0; i < 15; i++)
+	//{
+	//	data.emplace_back(IMAGE_ID("¼Þ¬ÝÌß")[i], (i + 1) * 2);
+	//}
+	//SetAnim(STATE::JUMP, data);
 }

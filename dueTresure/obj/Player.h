@@ -1,7 +1,7 @@
 #pragma once
 #include "Obj.h"
 
-enum class player
+enum class PLAYER
 {
 	player1,
 	player2,
@@ -13,11 +13,11 @@ class Player :
 {
 public:
 	Player();
-	Player(Vector2Dbl pos, Vector2Dbl size,player pl);
+	Player(Vector2Dbl pos, Vector2Dbl size,PLAYER pl);
 	~Player();
 	void Update(sharedObj& list) override;
 private:
 	void Init(void);
-	player plType;
+	PLAYER plType;
 };
 
