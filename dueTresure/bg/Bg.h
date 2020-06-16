@@ -20,6 +20,7 @@ class Bg
 public:
 	Bg();
 	virtual void Update();
+	virtual void Scroll();
 	void Draw(void);
 	virtual ~Bg();
 	Vector2Dbl _pos;

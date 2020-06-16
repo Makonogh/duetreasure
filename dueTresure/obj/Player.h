@@ -17,7 +17,7 @@ public:
 	Player();
 	Player(Vector2Dbl pos, Vector2Dbl size,PLAYER pl);
 	~Player();
-	void Update(sharedObj& list) override;
+	void Update(sharedObj& objlist, std::vector<sharedBG> & bglist) override;
 private:
 	void Init(void);
 	PLAYER _player;

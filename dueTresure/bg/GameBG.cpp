@@ -9,6 +9,11 @@ GameBG::GameBG(BG_DATA bg_data)
 	GameBgInit(bg_data);
 }
 
+void GameBG::Scroll()
+{
+	_pos.x--;
+}
+
 
 GameBG::~GameBG()
 {

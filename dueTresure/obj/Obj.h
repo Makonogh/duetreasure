@@ -24,7 +24,7 @@ class Obj
 public:
 	Obj();
 	virtual ~Obj();
-	virtual void Update(sharedObj& list);
+	virtual void Update(sharedObj& list, std::vector<sharedBG> & bglist);
 	virtual void Update();
 	void Draw(void);
 	void Draw(int id);

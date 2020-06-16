@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "common/ImgMng.h"
+#include "bg/GameBg.h"
 
 Player::Player()
 {
@@ -27,42 +28,68 @@ Player::~Player()
 {
 }
 
-void Player::Update(sharedObj & list)
+void Player::Update(sharedObj & objlist, std::vector<sharedBG> & bglist)
 {
 	PlayerCount++;
-	if (_player == PLAYER::player1)
+	if ((lpInput.state(INPUT_ID::RIGHT1).first != 0) && (lpInput.state(INPUT_ID::RIGHT2).first != 0))
 	{
-		if (lpInput.state(INPUT_ID::RIGHT1).first != 0)
+		for (auto data:bglist)
 		{
-			_state = STATE::DASH1;
-			_pos.x += PLAYER_SPEED;
+			(*data).Scroll();
 		}
-		else if (lpInput.state(INPUT_ID::LEFT1).first != 0)
+		if (_player == PLAYER::player1)
 		{
 			_state = STATE::DASH1;
-			_pos.x -= PLAYER_SPEED;
 		}
 		else
 		{
-			_state = STATE::NORMAL1;
+			_state = STATE::DASH2;
 		}
 	}
 	else
 	{
-		if (lpInput.state(INPUT_ID::RIGHT2).first != 0)
+		if (_player == PLAYER::player1)
 		{
-			_state = STATE::DASH2;
-			_pos.x += PLAYER_SPEED;
-		}
-		else if (lpInput.state(INPUT_ID::LEFT2).first != 0)
-		{
-			_state = STATE::DASH2;
-			_pos.x -= PLAYER_SPEED;
+			if (lpInput.state(INPUT_ID::RIGHT1).first != 0)
+			{
+				_state = STATE::DASH1;
+				_pos.x += PLAYER_SPEED;
+			}
+			else if (lpInput.state(INPUT_ID::LEFT1).first != 0)
+			{
+				_state = STATE::DASH1;
+				_pos.x -= PLAYER_SPEED;
+			}
+			else
+			{
+				_state = STATE::NORMAL1;
+			}
 		}
 		else
 		{
-			_state = STATE::NORMAL2;
+			if (lpInput.state(INPUT_ID::RIGHT2).first != 0)
+			{
+				_state = STATE::DASH2;
+				_pos.x += PLAYER_SPEED;
+			}
+			else if (lpInput.state(INPUT_ID::LEFT2).first != 0)
+			{
+				_state = STATE::DASH2;
+				_pos.x -= PLAYER_SPEED;
+			}
+			else
+			{
+				_state = STATE::NORMAL2;
+			}
 		}
+	}
+	if (_pos.x <= _size.x)
+	{
+		_pos.x = _size.x;
+	}
+	if (_pos.x >= lpSceneMng.ScreenSize.x - _size.x)
+	{
+		_pos.x = lpSceneMng.ScreenSize.x - _size.x;
 	}
 }
 

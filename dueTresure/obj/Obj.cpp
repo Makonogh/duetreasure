@@ -9,7 +9,7 @@ Obj::~Obj()
 {
 }
 
-void Obj::Update(sharedObj & list)
+void Obj::Update(sharedObj & list, std::vector<sharedBG> & bglist)
 {
 }
 
