@@ -7,6 +7,7 @@ enum class R_UI_TYPE {
 	RESTART,
 	TITLE,
 	EXIT,
+	BG,
 	MAX
 };
 

@@ -28,7 +28,7 @@ TitleScene::TitleScene()
 	lpImgMng.GetID("É}Éç", "image/maro.png");
 	lpImgMng.GetID("É}Éçéq", "image/maroko.png");
 
-	_bgList.emplace_back(new TitleBg({ UI_TYPE::BG, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y)}, lpSceneMng.ScreenSize}));
+	_bgList.emplace_back(new TitleBg({ UI_TYPE::BG, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y)}, lpSceneMng.ScreenSize }));
 	_bgList.emplace_back(new TitleBg({ UI_TYPE::LOGO, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) - 200.0}, lpSceneMng.ScreenSize }));
 	_bgList.emplace_back(new TitleBg({ UI_TYPE::GAMESTART, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) }, lpSceneMng.ScreenSize }));
 	_bgList.emplace_back(new TitleBg({ UI_TYPE::HOW_TO, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) + 100.0}, lpSceneMng.ScreenSize }));

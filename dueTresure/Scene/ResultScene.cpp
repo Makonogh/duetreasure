@@ -1,4 +1,4 @@
-#include "ResultScene.h"
+                     #include "ResultScene.h"
 #include "TitleScene.h"
 #include "DxLib.h"
 #include <algorithm>
@@ -13,6 +13,7 @@
 ResultScene::ResultScene()
 {
 	//変数の初期化
+	IntervalOffset = 186;
 	SelectCheck = 0;
 	SceneCount = 0;
 
@@ -20,6 +21,7 @@ ResultScene::ResultScene()
 	lpImgMng.GetID("ﾘｽﾀｰﾄ", "image/result/restart.png");
 	lpImgMng.GetID("ﾀｲﾄﾙ", "image/result/retitle.png");
 
+	_bgList.emplace_back(new ResultBg({ R_UI_TYPE::BG, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y)}, lpSceneMng.ScreenSize }));
 	_bgList.emplace_back(new ResultBg({ R_UI_TYPE::RANKING, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) }, lpSceneMng.ScreenSize }));
 	_bgList.emplace_back(new ResultBg({ R_UI_TYPE::RESTART, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) + 100.0 }, lpSceneMng.ScreenSize }));
 	_bgList.emplace_back(new ResultBg({ R_UI_TYPE::TITLE, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) + 200.0 }, lpSceneMng.ScreenSize }));
@@ -40,7 +42,7 @@ unique_Base ResultScene::Update(unique_Base own)
 	//選択
 	if (lpInput.state(INPUT_ID::UP1).first == 1 && lpInput.state(INPUT_ID::UP1).second == 0)
 	{
-		menuID++;
+		menuID--;
 		if (menuID < R_RANKING)
 		{
 			menuID = R_EXIT;
@@ -48,7 +50,7 @@ unique_Base ResultScene::Update(unique_Base own)
 	}
 	if (lpInput.state(INPUT_ID::DOWN1).first == 1 && lpInput.state(INPUT_ID::DOWN1).second == 0)
 	{
-		menuID--;
+		menuID++;
 		if (menuID > R_EXIT)
 		{
 			menuID = R_RANKING;
@@ -60,18 +62,22 @@ unique_Base ResultScene::Update(unique_Base own)
 	switch (menuID)
 	{
 		case static_cast<int>(R_MENU::R_RANKING) :
+			IntervalOffset = 188;
 			if (SceneCount > 60 && SelectCheck == 1)return std::make_unique<RankScene>();
 			break;
 
 		case static_cast<int>(R_MENU::R_RESTART) :
+			IntervalOffset = 170;
 			if (SceneCount > 60 && SelectCheck == 1)return std::make_unique<GameScene>();
 			break;
 
 		case static_cast<int>(R_MENU::R_TITLE) :
+			IntervalOffset = 124;
 			if (SceneCount > 60 && SelectCheck == 1)return std::make_unique<TitleScene>();
 			break;
 
 		case static_cast<int>(R_MENU::R_EXIT) :
+			IntervalOffset = 112;
 			if (SceneCount > 60 && SelectCheck == 1)lpSceneMng.ExitFlag = true;
 			break;
 
@@ -88,6 +94,7 @@ unique_Base ResultScene::Update(unique_Base own)
 	{
 		(*data).Draw();
 	}
+	lpSceneMng.AddDrawQue({ IMAGE_ID("選択アイコン")[SelectCheck], lpSceneMng.ScreenCenter.x + IntervalOffset, lpSceneMng.ScreenCenter.y + (menuID * 100), 0.0, 0, LAYER::UI });
 
 	SceneCount++;
 
