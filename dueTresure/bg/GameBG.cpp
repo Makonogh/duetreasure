@@ -28,7 +28,6 @@ bool GameBG::GameBgInit(BG_DATA bg_data)
 
 void GameBG::Update(void)
 {
-	_pos.x--;
 	_judge = Judge();
 }
 
