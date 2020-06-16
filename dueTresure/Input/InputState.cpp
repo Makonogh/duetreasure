@@ -20,22 +20,81 @@ InputState::~InputState()
 void InputState::Update(void)
 {
 	InputState::SetOld();
+	for (auto id : INPUT_ID())
+	{
+		_state[id].first = 0;
+	}
 	
+	if ((CheckHitKey(KEY_INPUT_A)) || GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_LEFT)
+	{
+		_state[INPUT_ID::LEFT1].first = 1;
+	}
 
-	_state[INPUT_ID::LEFT1].first  = CheckHitKey(KEY_INPUT_A);
-	_state[INPUT_ID::RIGHT1].first = CheckHitKey(KEY_INPUT_D);
-	_state[INPUT_ID::UP1].first    = CheckHitKey(KEY_INPUT_W);
-	_state[INPUT_ID::DOWN1].first  = CheckHitKey(KEY_INPUT_S);
-	_state[INPUT_ID::LEFT2].first  = CheckHitKey(KEY_INPUT_NUMPAD4);
-	_state[INPUT_ID::RIGHT2].first = CheckHitKey(KEY_INPUT_NUMPAD6);
-	_state[INPUT_ID::UP2].first    = CheckHitKey(KEY_INPUT_NUMPAD8);
-	_state[INPUT_ID::DOWN2].first  = CheckHitKey(KEY_INPUT_NUMPAD5);
-	_state[INPUT_ID::BTN_1].first  = CheckHitKey(KEY_INPUT_Q);
-	_state[INPUT_ID::BTN_2].first  = CheckHitKey(KEY_INPUT_E);
-	_state[INPUT_ID::BTN_3].first  = CheckHitKey(KEY_INPUT_7);
-	_state[INPUT_ID::BTN_4].first  = CheckHitKey(KEY_INPUT_9);
-	_state[INPUT_ID::START].first  = CheckHitKey(KEY_INPUT_RETURN);
-	_state[INPUT_ID::SELECT].first = CheckHitKey(KEY_INPUT_SPACE);
+	if ((CheckHitKey(KEY_INPUT_D)) || GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_RIGHT)
+	{
+		_state[INPUT_ID::RIGHT1].first = 1;
+	}
+
+	if ((CheckHitKey(KEY_INPUT_W)) || GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_UP)
+	{
+		_state[INPUT_ID::UP1].first = 1;
+	}
+
+	if ((CheckHitKey(KEY_INPUT_S)) || GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_DOWN)
+	{
+		_state[INPUT_ID::DOWN1].first = 1;
+	}
+	
+	if ((CheckHitKey(KEY_INPUT_NUMPAD4)) || GetJoypadInputState(DX_INPUT_PAD2) & PAD_INPUT_LEFT)
+	{
+		_state[INPUT_ID::LEFT2].first = 1;
+	}
+	
+	if ((CheckHitKey(KEY_INPUT_NUMPAD6)) || GetJoypadInputState(DX_INPUT_PAD2) & PAD_INPUT_RIGHT)
+	{
+		_state[INPUT_ID::RIGHT2].first = 1;
+	}
+	
+	if ((CheckHitKey(KEY_INPUT_NUMPAD8)) || GetJoypadInputState(DX_INPUT_PAD2) & PAD_INPUT_UP)
+	{
+		_state[INPUT_ID::UP2].first = 1;
+	}
+
+	if ((CheckHitKey(KEY_INPUT_NUMPAD5)) || GetJoypadInputState(DX_INPUT_PAD2) & PAD_INPUT_DOWN)
+	{
+		_state[INPUT_ID::DOWN2].first = 1;
+	}
+
+	if ((CheckHitKey(KEY_INPUT_Q)) || GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_1)
+	{
+		_state[INPUT_ID::BTN_1].first = 1;
+	}
+
+	if ((CheckHitKey(KEY_INPUT_E)) || GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_2)
+	{
+		_state[INPUT_ID::BTN_2].first = 1;
+	}
+	
+	if ((CheckHitKey(KEY_INPUT_NUMPAD7)) || GetJoypadInputState(DX_INPUT_PAD2) & PAD_INPUT_1)
+	{
+		_state[INPUT_ID::BTN_3].first = 1;
+	}
+	
+	if ((CheckHitKey(KEY_INPUT_NUMPAD9)) || GetJoypadInputState(DX_INPUT_PAD2) & PAD_INPUT_2)
+	{
+		_state[INPUT_ID::BTN_4].first = 1;
+	}
+	
+	if ((CheckHitKey(KEY_INPUT_SPACE)) || GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_10)
+	{
+		_state[INPUT_ID::SELECT].first = 1;
+	}
+
+	if ((CheckHitKey(KEY_INPUT_RETURN)) || GetJoypadInputState(DX_INPUT_PAD2) & PAD_INPUT_10)
+	{
+		_state[INPUT_ID::START].first = 1;
+	}
+
 
 }
 

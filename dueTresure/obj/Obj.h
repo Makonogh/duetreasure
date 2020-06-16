@@ -9,8 +9,10 @@ class Obj;
 
 enum class STATE
 {
-	NORMAL,		// 通常状態
-	JUMP,		// ジャンプ
+	NORMAL1,		// PL1通常状態
+	DASH1,			// PL1ジャンプ
+	NORMAL2,		// PL2通常状態
+	DASH2,			// PL2ジャンプ
 	MAX
 };
 

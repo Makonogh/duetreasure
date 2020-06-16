@@ -1,6 +1,8 @@
 #pragma once
 #include "Obj.h"
 
+#define PLAYER_SPEED 3;
+
 enum class PLAYER
 {
 	player1,
@@ -18,6 +20,6 @@ public:
 	void Update(sharedObj& list) override;
 private:
 	void Init(void);
-	PLAYER plType;
+	PLAYER _player;
 };
 
