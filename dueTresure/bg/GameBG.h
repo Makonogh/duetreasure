@@ -17,6 +17,7 @@ public:
 	GameBG();
 	GameBG(BG_DATA bg_data);
 	void Scroll() override;
+	bool GetJudge();
 	~GameBG();
 private:
 	bool GameBgInit(BG_DATA bg_data);							// IMGLIST‚É“o˜^‚·‚é

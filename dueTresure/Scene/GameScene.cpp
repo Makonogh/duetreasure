@@ -11,7 +11,7 @@ GameScene::GameScene()
 	// ｹﾞｰﾑで使う画像の読み込み
 	lpImgMng.GetID("ｹﾞｰﾑ背景", "image/gameback.png");
 	lpImgMng.GetID("1プレイヤー待機", "image/Idle.png", { 250,230}, { 15,1 });
-	lpImgMng.GetID("2プレイヤー待機", "image/Idle2.png", { 3750 / 15,230 }, { 15,1 });
+	lpImgMng.GetID("2プレイヤー待機", "image/Idle2.png", { 3000 / 15,230 }, { 15,1 });
 	lpImgMng.GetID("1プレイヤーダッシュ", "image/Run.png", { 250,230 }, { 15,1 });
 	lpImgMng.GetID("2プレイヤーダッシュ", "image/Run2.png", { 3750/20,230 }, { 20,1 });
 
@@ -47,6 +47,19 @@ unique_Base GameScene::Update(unique_Base own)
 		(*data).Update();
 	}
 
+
+	for (auto data : _bgList)
+	{
+		if ((*data).GetJudge())
+		{
+			_bgList.erase(_bgList.begin());
+			_bgList.emplace_back(new GameBG({ GAME_BG_TYPE::BASE,
+				{_bgList.back()->_pos.x + lpSceneMng.ScreenSize.x - 1,lpSceneMng.ScreenCenter.y},
+				lpSceneMng.ScreenSize }));
+			break;
+		}
+	}
+
 	for (auto data : _objList)
 	{
 		(*data).Draw();
@@ -56,6 +69,8 @@ unique_Base GameScene::Update(unique_Base own)
 	{
 		(*data).Draw();
 	}
+
+
 
 	return own;
 }

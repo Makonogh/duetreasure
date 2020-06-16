@@ -100,21 +100,21 @@ void Player::Init(void)
 	data.reserve(15);
 	for (int i = 0; i < 15; i++)
 	{
-		data.emplace_back(IMAGE_ID("1プレイヤー待機")[i], (i + 1) * 2);
+		data.emplace_back(IMAGE_ID("1プレイヤー待機")[i], (i + 1) * 1);
 	}
 	SetAnim(STATE::NORMAL1, data);
 
 	data.reserve(15);
 	for (int i = 0; i < 15; i++)
 	{
-		data.emplace_back(IMAGE_ID("2プレイヤー待機")[i], (i + 1) * 2);
+		data.emplace_back(IMAGE_ID("2プレイヤー待機")[i], (i + 1) * 1);
 	}
 	SetAnim(STATE::NORMAL2, data);
 
 	data.reserve(15);
 	for (int i = 0; i < 15; i++)
 	{
-		data.emplace_back(IMAGE_ID("1プレイヤーダッシュ")[i], (i + 1) * 2);
+		data.emplace_back(IMAGE_ID("1プレイヤーダッシュ")[i], (i + 1) * 1);
 	}
 	SetAnim(STATE::DASH1, data);
 
@@ -122,7 +122,7 @@ void Player::Init(void)
 	data.reserve(20);
 	for (int i = 0; i < 15; i++)
 	{
-		data.emplace_back(IMAGE_ID("2プレイヤーダッシュ")[i], (i + 1) * 2);
+		data.emplace_back(IMAGE_ID("2プレイヤーダッシュ")[i], (i + 1) * 1);
 	}
 	SetAnim(STATE::DASH2, data);
 }

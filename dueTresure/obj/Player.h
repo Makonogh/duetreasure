@@ -1,7 +1,7 @@
 #pragma once
 #include "Obj.h"
 
-#define PLAYER_SPEED 3;
+#define PLAYER_SPEED 8;
 
 enum class PLAYER
 {

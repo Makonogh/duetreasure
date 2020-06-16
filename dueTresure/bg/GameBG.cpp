@@ -11,7 +11,12 @@ GameBG::GameBG(BG_DATA bg_data)
 
 void GameBG::Scroll()
 {
-	_pos.x--;
+	_pos.x-= 5;
+}
+
+bool GameBG::GetJudge()
+{
+	return _judge;
 }
 
 
