@@ -14,12 +14,12 @@ void BaseScene::SelectPath()//vectorŒ^ _menuList
 	//Œˆ’è
 	if (lpInput.state(INPUT_ID::SELECT).first == 1 && lpInput.state(INPUT_ID::SELECT).second == 0)
 	{
-		if (sarada == 0)
+		if (SelectCheck == 0)
 		{
-			sarada = 1;
+			SelectCheck = 1;
 			SceneCount = 0;
 		}
-		else sarada = 0;
+		else SelectCheck = 0;
 	}
 	
 }

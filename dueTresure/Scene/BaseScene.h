@@ -29,7 +29,7 @@ public:
 	virtual ~BaseScene();
 	virtual unique_Base Update(unique_Base) = 0;
 	int SceneCount;
-	bool sarada;		//(âºñºÅj
+	bool SelectCheck;		//(âºñºÅj
 	int menuID;
 	int IntervalOffset;
 	void SelectPath();

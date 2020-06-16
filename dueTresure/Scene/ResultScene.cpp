@@ -13,7 +13,7 @@
 ResultScene::ResultScene()
 {
 	//•Ï”‚Ì‰Šú‰»
-	sarada = 0;
+	SelectCheck = 0;
 	SceneCount = 0;
 
 	TRACE("Ø»ÞÙÄ¼°Ý¶¬");
@@ -49,9 +49,9 @@ unique_Base ResultScene::Update(unique_Base own)
 	if (lpInput.state(INPUT_ID::DOWN1).first == 1 && lpInput.state(INPUT_ID::DOWN1).second == 0)
 	{
 		menuID--;
-		if (menuID > R_RANKING)
+		if (menuID > R_EXIT)
 		{
-			menuID = R_EXIT;
+			menuID = R_RANKING;
 		}
 	}
 
@@ -60,19 +60,19 @@ unique_Base ResultScene::Update(unique_Base own)
 	switch (menuID)
 	{
 		case static_cast<int>(R_MENU::R_RANKING) :
-			if (SceneCount > 60 && sarada == 1)return std::make_unique<RankScene>();
+			if (SceneCount > 60 && SelectCheck == 1)return std::make_unique<RankScene>();
 			break;
 
 		case static_cast<int>(R_MENU::R_RESTART) :
-			if (SceneCount > 60 && sarada == 1)return std::make_unique<GameScene>();
+			if (SceneCount > 60 && SelectCheck == 1)return std::make_unique<GameScene>();
 			break;
 
 		case static_cast<int>(R_MENU::R_TITLE) :
-			if (SceneCount > 60 && sarada == 1)return std::make_unique<TitleScene>();
+			if (SceneCount > 60 && SelectCheck == 1)return std::make_unique<TitleScene>();
 			break;
 
 		case static_cast<int>(R_MENU::R_EXIT) :
-			if (SceneCount > 60 && sarada == 1)lpSceneMng.ExitFlag = true;
+			if (SceneCount > 60 && SelectCheck == 1)lpSceneMng.ExitFlag = true;
 			break;
 
 		default:
