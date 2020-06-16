@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "common/ImgMng.h"
 
 
 
@@ -22,8 +23,24 @@ Player::~Player()
 
 void Player::Update(sharedObj & list)
 {
+	PlayerCount++;
 }
 
 void Player::Init(void)
 {
+	AnimVector data;
+
+	data.reserve(15);
+	for (int i = 0; i < 15; i++)
+	{
+		data.emplace_back(IMAGE_ID("·¬×")[i], (i + 1) * 2);
+	}
+	SetAnim(STATE::NORMAL, data);
+
+	data.reserve(15);
+	for (int i = 0; i < 15; i++)
+	{
+		data.emplace_back(IMAGE_ID("¼Þ¬ÝÌß")[i], (i + 1) * 2);
+	}
+	SetAnim(STATE::JUMP, data);
 }

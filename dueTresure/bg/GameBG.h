@@ -20,6 +20,8 @@ public:
 private:
 	bool GameBgInit(BG_DATA bg_data);							// IMGLIST‚É“o˜^‚·‚é
 	void Update(void);
+	bool Judge(void);
+	bool _judge;											// íœ‚·‚é‚×‚«‚Ìtrue
 	std::map <GAME_BG_TYPE, std::string> Img_List;					// ‰æ‘œØ½Ä
 };
 

@@ -22,10 +22,21 @@ bool GameBG::GameBgInit(BG_DATA bg_data)
 	}
 	image = Img_List[std::get<static_cast<int>(BG_STATE::IMAGE)>(bg_data)];
 	_pos = std::get<static_cast<int>(BG_STATE::POS)>(bg_data);
+	_size = std::get<static_cast<int>(BG_STATE::SIZE)>(bg_data);
 	return false;
 }
 
 void GameBG::Update(void)
 {
 	_pos.x--;
+	_judge = Judge();
+}
+
+bool GameBG::Judge(void)
+{
+	if (_pos.x <= -(_size.x / 2))
+	{
+		return true;
+	}
+	return false;
 }

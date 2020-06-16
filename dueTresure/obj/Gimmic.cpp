@@ -1,7 +1,5 @@
 #include "Gimmic.h"
 
-
-
 Gimmic::Gimmic()
 {
 }

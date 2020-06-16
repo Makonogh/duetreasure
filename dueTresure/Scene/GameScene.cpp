@@ -13,7 +13,7 @@ GameScene::GameScene()
 	// 初期で必要なリストのセット
 	_bgList.emplace_back(new GameBG({ GAME_BG_TYPE::BASE,lpSceneMng.ScreenCenter,lpSceneMng.ScreenSize}));
 	_bgList.emplace_back(new GameBG({ GAME_BG_TYPE::BASE,
-									{lpSceneMng.ScreenCenter.x + lpSceneMng.ScreenSize.x - 1,lpSceneMng.ScreenCenter.y},
+									{lpSceneMng.ScreenCenter.x + lpSceneMng.ScreenSize.x,lpSceneMng.ScreenCenter.y},
 									lpSceneMng.ScreenSize }));
 }
 
