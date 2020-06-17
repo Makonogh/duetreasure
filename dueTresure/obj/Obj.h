@@ -10,9 +10,19 @@ class Obj;
 enum class STATE
 {
 	NORMAL1,		// PL1通常状態
-	DASH1,			// PL1ジャンプ
+	DASH1,			// PL1右ダッシュ
+	REDASH1,		// PL1左ダッシュ
 	NORMAL2,		// PL2通常状態
-	DASH2,			// PL2ジャンプ
+	DASH2,			// PL2右ダッシュ
+	REDASH2,		// PL2左ダッシュ
+	MAX
+};
+
+enum class OBJ_DATA
+{
+	POS,
+	SIZE,
+	TYPE,
 	MAX
 };
 
@@ -29,14 +39,20 @@ public:
 	void Draw(void);
 	void Draw(int id);
 	bool SetAnim(const STATE state, AnimVector& data);	// アニメーションのセット
+
+	Vector2Dbl GetPos();
+
 	int PlayerCount;									// プレイヤー用アニメーションフレーム
 	unsigned int _animCount;							// 見出しから何回ﾙｰﾌﾟしてるか
 	unsigned int _animFrame;							// なんﾌﾚｰﾑか
+	virtual bool GetJudge();
 private:
 	std::map<STATE, AnimVector>_animMap;
+	
 protected:
 	Vector2Dbl _pos;									// 座標
 	Vector2Dbl _size;									// サイズ
 	STATE _state;										// 状態
+	bool _judge;			// trueなら消える
 };
 

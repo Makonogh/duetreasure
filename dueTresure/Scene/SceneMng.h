@@ -26,7 +26,6 @@ using DrawQueT = std::tuple<int, double, double, double, int, LAYER>;
 class SceneMng
 {
 public:
-
 	static SceneMng &GetInstance(void)
 	{
 		Create();

@@ -2,7 +2,7 @@
 #include "Bg.h"
 #include <map>
 
-enum GAME_BG_TYPE
+enum class GAME_BG_TYPE
 {
 	BASE,
 	BGMAX
@@ -18,10 +18,12 @@ public:
 	GameBG(BG_DATA bg_data);
 	void Scroll() override;
 	bool GetJudge();
+	Vector2Dbl GetDifPos();
 	~GameBG();
 private:
 	bool GameBgInit(BG_DATA bg_data);							// IMGLIST‚É“o˜^‚·‚é
 	void Update(void);
+	Vector2Dbl StartPos;
 	bool Judge(void);
 	bool _judge;											// íœ‚·‚é‚×‚«‚Ìtrue
 	std::map <GAME_BG_TYPE, std::string> Img_List;					// ‰æ‘œØ½Ä

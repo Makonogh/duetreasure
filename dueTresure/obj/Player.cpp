@@ -57,7 +57,7 @@ void Player::Update(sharedObj & objlist, std::vector<sharedBG> & bglist)
 			}
 			else if (lpInput.state(INPUT_ID::LEFT1).first != 0)
 			{
-				_state = STATE::DASH1;
+				_state = STATE::REDASH1;
 				_pos.x -= PLAYER_SPEED;
 			}
 			else
@@ -74,7 +74,7 @@ void Player::Update(sharedObj & objlist, std::vector<sharedBG> & bglist)
 			}
 			else if (lpInput.state(INPUT_ID::LEFT2).first != 0)
 			{
-				_state = STATE::DASH2;
+				_state = STATE::REDASH2;
 				_pos.x -= PLAYER_SPEED;
 			}
 			else
@@ -91,6 +91,11 @@ void Player::Update(sharedObj & objlist, std::vector<sharedBG> & bglist)
 	{
 		_pos.x = lpSceneMng.ScreenSize.x - _size.x;
 	}
+}
+
+bool Player::GetJudge()
+{
+	return false;
 }
 
 void Player::Init(void)
@@ -118,6 +123,12 @@ void Player::Init(void)
 	}
 	SetAnim(STATE::DASH1, data);
 
+	data.reserve(15);
+	for (int i = 0; i < 15; i++)
+	{
+		data.emplace_back(IMAGE_ID("1プレイヤー反転ダッシュ")[i], (i + 1) * 1);
+	}
+	SetAnim(STATE::REDASH1, data);
 
 	data.reserve(20);
 	for (int i = 0; i < 15; i++)
@@ -125,4 +136,11 @@ void Player::Init(void)
 		data.emplace_back(IMAGE_ID("2プレイヤーダッシュ")[i], (i + 1) * 1);
 	}
 	SetAnim(STATE::DASH2, data);
+
+	data.reserve(20);
+	for (int i = 0; i < 15; i++)
+	{
+		data.emplace_back(IMAGE_ID("2プレイヤー反転ダッシュ")[i], (i + 1) * 1);
+	}
+	SetAnim(STATE::REDASH2, data);
 }

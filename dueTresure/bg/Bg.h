@@ -22,6 +22,7 @@ public:
 	virtual void Update();
 	virtual void Scroll();
 	virtual bool GetJudge();
+	virtual Vector2Dbl GetDifPos();
 	void Draw(void);
 	virtual ~Bg();
 	Vector2Dbl _pos;

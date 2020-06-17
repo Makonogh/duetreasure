@@ -18,6 +18,7 @@ public:
 	Player(Vector2Dbl pos, Vector2Dbl size,PLAYER pl);
 	~Player();
 	void Update(sharedObj& objlist, std::vector<sharedBG> & bglist) override;
+	bool GetJudge();
 private:
 	void Init(void);
 	PLAYER _player;

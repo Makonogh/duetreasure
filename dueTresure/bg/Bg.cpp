@@ -21,6 +21,11 @@ bool Bg::GetJudge()
 	return false;
 }
 
+Vector2Dbl Bg::GetDifPos()
+{
+	return Vector2Dbl();
+}
+
 void Bg::Draw(void)
 {
 	lpSceneMng.AddDrawQue({ IMAGE_ID(image)[0],_pos.x,_pos.y ,0.0,INT_MAX, LAYER::BG });

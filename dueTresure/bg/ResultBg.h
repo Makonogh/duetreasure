@@ -2,6 +2,7 @@
 #include "Bg.h"
 #include <tuple>
 #include <map>
+
 enum class R_UI_TYPE {
 	RANKING,
 	RESTART,
