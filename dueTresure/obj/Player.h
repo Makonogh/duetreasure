@@ -2,6 +2,9 @@
 #include "Obj.h"
 
 #define PLAYER_SPEED 8;
+#define INIT_VELOCITY 50.0f;		//初速度(ジャンプの高さ) 値上げると高くなる
+#define FLAME_TIME 0.3f;			//落下の速度　値下げるとやんわり
+#define G 10.0f;					//重力
 
 enum class PLAYER
 {

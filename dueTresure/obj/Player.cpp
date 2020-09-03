@@ -19,6 +19,7 @@ Player::Player(Vector2Dbl pos, Vector2Dbl size, PLAYER pl)
 	{
 		_state = STATE::NORMAL2;
 	}
+	_velocity = { 0,0 };
 	PlayerCount = 0;
 	Init();
 }
@@ -83,6 +84,50 @@ void Player::Update(sharedObj & objlist, std::vector<sharedBG> & bglist)
 			}
 		}
 	}
+
+	//ジャンプ制御----------------------------------------------------------
+	//ジャンプはスペース　当たり判定はポスでやってるだけ
+	//PL1,PL2が連動してジャンプする
+	if (lpInput.state(INPUT_ID::SELECT).first == 1 && lpInput.state(INPUT_ID::SELECT).second == 0)
+	{
+		if (_player == PLAYER::player1)
+		{
+			_state = STATE::JUMP1;
+			_pos.y = 599.0f;
+			_velocity.y = INIT_VELOCITY; //lpSceneMng.ScreenCenter.y - 150.0
+		}
+		else
+		{
+			_state = STATE::JUMP2;
+			_pos.y = lpSceneMng.ScreenCenter.y - 150.0 - 1;
+			_velocity.y = INIT_VELOCITY;
+		}
+	}
+	float g = G;
+	float flameTime = FLAME_TIME;
+	flameTime *= g;		//(G * FLAME_TIME)
+	if (_player == PLAYER::player1)
+	{
+		if (_pos.y <= 600)
+		{
+			_velocity.y = _velocity.y - flameTime;
+			_pos.y -= _velocity.y * FLAME_TIME;
+		}
+	}
+	else
+	{
+		if (_pos.y < lpSceneMng.ScreenCenter.y - 150.0)
+		{
+			_velocity.y = _velocity.y - flameTime;
+			_pos.y -= _velocity.y * FLAME_TIME;
+		}
+		else
+		{
+			_pos.y = lpSceneMng.ScreenCenter.y - 150.0;
+		}
+	}
+	//--------------------------------------------------------------------------------------
+
 	if (_pos.x <= _size.x)
 	{
 		_pos.x = _size.x;

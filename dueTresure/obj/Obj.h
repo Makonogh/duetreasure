@@ -12,9 +12,11 @@ enum class STATE
 	NORMAL1,		// PL1通常状態
 	DASH1,			// PL1右ダッシュ
 	REDASH1,		// PL1左ダッシュ
+	JUMP1,			// PL1ジャンプ
 	NORMAL2,		// PL2通常状態
 	DASH2,			// PL2右ダッシュ
 	REDASH2,		// PL2左ダッシュ
+	JUMP2,			// PL2ジャンプ
 	MAX
 };
 
@@ -52,6 +54,7 @@ private:
 protected:
 	Vector2Dbl _pos;									// 座標
 	Vector2Dbl _size;									// サイズ
+	Vector2Dbl _velocity;								// 加速度
 	STATE _state;										// 状態
 	bool _judge;			// trueなら消える
 };
