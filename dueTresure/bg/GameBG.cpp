@@ -34,6 +34,7 @@ bool GameBG::GameBgInit(BG_DATA bg_data)
 	if (Img_List.size() < static_cast<int> (GAME_BG_TYPE::BGMAX))
 	{
 		Img_List.insert(std::make_pair(GAME_BG_TYPE::BASE, "ƒQ[ƒ€”wŒi"));
+		Img_List.insert(std::make_pair(GAME_BG_TYPE::CLOCK, "Œv"));
 	}
 	image = Img_List[std::get<static_cast<int>(BG_STATE::IMAGE)>(bg_data)];
 	_pos = std::get<static_cast<int>(BG_STATE::POS)>(bg_data);

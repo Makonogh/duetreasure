@@ -16,6 +16,7 @@ GameScene::GameScene()
 	// ｹﾞｰﾑで使う画像の読み込み
 	lpImgMng.GetID("ゲーム背景"				, "image/gameback.png");
 	lpImgMng.GetID("床"						, "image/floor.png"		, { 1366,40 }, {1,1});
+	lpImgMng.GetID("時計", "image/clock0.png");
 	lpImgMng.GetID("1プレイヤー待機"		, "image/Idle.png"		, { 250,230}, { 15,1 });
 	lpImgMng.GetID("2プレイヤー待機"		, "image/Idle2.png"		, { 3000 / 15,230 }, { 15,1 });
 	lpImgMng.GetID("1プレイヤーダッシュ"	, "image/Run.png"		, { 250,230 }, { 15,1 });
@@ -28,6 +29,7 @@ GameScene::GameScene()
 	_bgList.emplace_back(new GameBG({ GAME_BG_TYPE::BASE,
 									{lpSceneMng.ScreenCenter.x + lpSceneMng.ScreenSize.x - 1,lpSceneMng.ScreenCenter.y},
 									lpSceneMng.ScreenSize }));
+	//_bgList.emplace_back(new GameBG({ GAME_BG_TYPE::CLOCK,lpSceneMng.ScreenCenter,lpSceneMng.ScreenSize }));
 
 
 	_objList.emplace_back(new Player({ 150.0,lpSceneMng.ScreenCenter.y - 150.0}, { 100,230 }, PLAYER::player2));
@@ -82,6 +84,8 @@ unique_Base GameScene::Update(unique_Base own)
 		}
 	}
 
+	lpSceneMng.AddDrawQue({ IMAGE_ID("時計")[0], lpSceneMng.ScreenCenter.x + 600, lpSceneMng.ScreenCenter.y - 330, 0.0, 1, LAYER::SYSTEM });
+
 	for (auto data : _objList)
 	{
 		(*data).Draw();
@@ -91,6 +95,8 @@ unique_Base GameScene::Update(unique_Base own)
 	{
 		(*data).Draw();
 	}
+
+	
 
 	return own;
 }

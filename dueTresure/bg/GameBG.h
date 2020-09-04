@@ -5,6 +5,7 @@
 enum class GAME_BG_TYPE
 {
 	BASE,
+	CLOCK,
 	BGMAX
 };
 
