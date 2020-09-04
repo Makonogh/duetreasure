@@ -85,7 +85,7 @@ unique_Base GameScene::Update(unique_Base own)
 	}
 
 	lpSceneMng.AddDrawQue({ IMAGE_ID("ŽžŒv")[0], lpSceneMng.ScreenCenter.x + 600, lpSceneMng.ScreenCenter.y - 330, 0.0, 1, LAYER::SYSTEM });
-	
+
 	for (auto data : _objList)
 	{
 		(*data).Draw();
