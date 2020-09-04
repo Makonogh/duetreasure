@@ -22,6 +22,7 @@ public:
 	~Player();
 	void Update(sharedObj& objlist, std::vector<sharedBG> & bglist) override;
 	bool GetJudge();
+	bool _jumpFlag;
 private:
 	void Init(void);
 	PLAYER _player;

@@ -5,6 +5,10 @@
 #include "common/ImgMng.h"
 #include "obj/Player.h"
 #include "obj/Gimmic.h"
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
 
 GameScene::GameScene()
 {

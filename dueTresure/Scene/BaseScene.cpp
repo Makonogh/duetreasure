@@ -7,6 +7,7 @@ BaseScene::BaseScene()
 
 BaseScene::~BaseScene()
 {
+
 }
 
 void BaseScene::SelectPath()//vectorå^ _menuList
@@ -21,5 +22,4 @@ void BaseScene::SelectPath()//vectorå^ _menuList
 		}
 		else SelectCheck = 0;
 	}
-	
 }
