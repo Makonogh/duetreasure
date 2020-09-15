@@ -45,7 +45,7 @@ GameScene::GameScene()
 	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenCenter.x , lpSceneMng.ScreenSize.y - 60 }, { 1366,40 }, GIMMIC::FLOOR }));
 	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenCenter.x + lpSceneMng.ScreenSize.x , lpSceneMng.ScreenSize.y - 60 }, { 1366,40 }, GIMMIC::FLOOR }));
 
-	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenSize.x/2 , lpSceneMng.ScreenSize.y/2 }, { 192/3,112 }, GIMMIC::GOAL }));
+	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenSize.x/2+580, lpSceneMng.ScreenSize.y/2+80 }, { 192/3,112 }, GIMMIC::GOAL }));
 
 	for (double y = 0;y * 150 <= sSize.y; y+=1)
 	{
