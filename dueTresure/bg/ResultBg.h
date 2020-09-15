@@ -8,6 +8,7 @@ enum class R_UI_TYPE {
 	RESTART,
 	TITLE,
 	EXIT,
+	GAMECLEAR,
 	BG,
 	MAX
 };

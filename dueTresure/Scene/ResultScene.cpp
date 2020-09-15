@@ -20,12 +20,14 @@ ResultScene::ResultScene()
 	TRACE("ÿªﬁŸƒº∞›ê∂ê¨");
 	lpImgMng.GetID("ÿΩ¿∞ƒ", "image/result/restart.png");
 	lpImgMng.GetID("¿≤ƒŸ", "image/result/retitle.png");
+	lpImgMng.GetID("πﬁ∞—∏ÿ±", "image/result/GameClear.png");
 
 	_bgList.emplace_back(new ResultBg({ R_UI_TYPE::BG, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y)}, lpSceneMng.ScreenSize }));
 	_bgList.emplace_back(new ResultBg({ R_UI_TYPE::RANKING, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) }, lpSceneMng.ScreenSize }));
 	_bgList.emplace_back(new ResultBg({ R_UI_TYPE::RESTART, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) + 100.0 }, lpSceneMng.ScreenSize }));
 	_bgList.emplace_back(new ResultBg({ R_UI_TYPE::TITLE, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) + 200.0 }, lpSceneMng.ScreenSize }));
 	_bgList.emplace_back(new ResultBg({ R_UI_TYPE::EXIT, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) + 300.0 }, lpSceneMng.ScreenSize }));
+	_bgList.emplace_back(new ResultBg({ R_UI_TYPE::GAMECLEAR, {static_cast<double>(lpSceneMng.ScreenCenter.x), static_cast<double>(lpSceneMng.ScreenCenter.y) - 200.0 }, lpSceneMng.ScreenSize }));
 	GraphFilter(IMAGE_ID("¿≤ƒŸîwåi")[0], DX_GRAPH_FILTER_GAUSS, 2, 1200);
 
 	menuID = static_cast<int>(R_MENU::R_RANKING);
