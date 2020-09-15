@@ -37,8 +37,8 @@ GameScene::GameScene()
 	sCenter = lpSceneMng.ScreenCenter;
 	sSize = lpSceneMng.ScreenSize;
 
-	_playerList.emplace_back(new Player({ 150.0,lpSceneMng.ScreenCenter.y }, { 1500 / 15, 92 }, PLAYER::player1));
-	_playerList.emplace_back(new Player({ 150.0,600.0 }, { 1500 / 15,115 }, PLAYER::player2));
+	_playerList.emplace_back(new Player({ 150.0,lpSceneMng.ScreenCenter.y + 55}, { 1500 / 15 - 30.0, 80 }, PLAYER::player1));
+	_playerList.emplace_back(new Player({ 150.0,600.0 }, { 1500 / 15 - 30.0,100 }, PLAYER::player2));
 
 	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenCenter.x , lpSceneMng.ScreenCenter.y + 120 }, { 1366,40 }, GIMMIC::FLOOR }));
 	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenCenter.x + lpSceneMng.ScreenSize.x , lpSceneMng.ScreenCenter.y + 120 }, { 1366,40 }, GIMMIC::FLOOR }));
@@ -46,13 +46,14 @@ GameScene::GameScene()
 	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenCenter.x , lpSceneMng.ScreenSize.y - 60 }, { 1366,40 }, GIMMIC::FLOOR }));
 	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenCenter.x + lpSceneMng.ScreenSize.x , lpSceneMng.ScreenSize.y - 60 }, { 1366,40 }, GIMMIC::FLOOR }));
 
-	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenSize.x/2+580, lpSceneMng.ScreenSize.y / 2 + 80 }, { 192/3,112 }, GIMMIC::GOAL }));
+	_objList.emplace_back(new Gimmic({ { sSize.x - 50, sCenter.y + 55}, { 0,0 }, GIMMIC::GOAL }));
 
-	for (double y = 0;y * 50 <= sSize.y; y+=1)
+	for (double y = 0;y * 50 <= sSize.y + 200 ; y+=1)
 	{
-		_objList.emplace_back(new Gimmic({ { -50 ,y * 50 }, { 50,50 }, GIMMIC::HASHIRA }));
-		_objList.emplace_back(new Gimmic({ { sSize.x + 50 ,y  * 50}, { 50,50 }, GIMMIC::HASHIRA }));
+		_objList.emplace_back(new Gimmic({ { -25 ,y * 50 - 175}, { 50,50 }, GIMMIC::HASHIRA }));
+		_objList.emplace_back(new Gimmic({ { sSize.x + 25 ,y  * 50 - 175}, { 50,50 }, GIMMIC::HASHIRA }));
 	}
+
 
 	_objList.emplace_back(new Gimmic({ { 300.0 ,sCenter.y + 75}, { 50,50 }, GIMMIC::HASHIRA }));
 	_objList.emplace_back(new Gimmic({ { 350.0 ,sCenter.y + 25}, { 50,50 }, GIMMIC::HASHIRA }));
@@ -156,6 +157,11 @@ bool GameScene::CheckHit(Vector2Dbl pos, Vector2Dbl size)
 	return false;
 }
 
+void GameScene::SetLpos(Vector2Dbl pos)
+{
+	lpos = pos;
+}
+
 
 
 void GameScene::Draw()
@@ -178,6 +184,14 @@ void GameScene::Draw()
 
 void GameScene::Hide()
 {
-	/*DrawBox(0,0,sSize.x,sCenter.y + 100,0xffffff,true);*/
+	hideScreen = MakeScreen(sSize.x, sCenter.y + 120,true);
+	SetDrawScreen(hideScreen);
+	ClearDrawScreen();
+	
+	DrawBox(0, 0, sSize.x, sCenter.y + 120, 0x000000, true);
+	SetDrawBlendMode(DX_BLENDMODE_SUB, 255);
+	DrawCircle(lpos.x,lpos.y,100,0x000000,true);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	lpSceneMng.AddDrawQue({ hideScreen,sCenter.x,sCenter.y - 140,0.0,INT_MAX, LAYER::UI });
 }
 
