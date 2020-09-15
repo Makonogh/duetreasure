@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
+#include "DxLib.h"
 
 
 GameScene::GameScene()
@@ -15,8 +16,8 @@ GameScene::GameScene()
 	// ｹﾞｰﾑで使う画像の読み込み
 	lpImgMng.GetID("ゲーム背景"				, "image/gameback.png");
 	lpImgMng.GetID("床"						, "image/floor.png"		, { 1366,40 }, {1,1});
-	lpImgMng.GetID("柱"						, "image/hasira.png", { 150,150 }, { 1,1 });
-	lpImgMng.GetID("床ブロック"				, "image/yoko.png", { 150,150}, { 1,1 });
+	lpImgMng.GetID("柱"						, "image/hasira.png", { 50,50 }, { 1,1 });
+	lpImgMng.GetID("床ブロック"				, "image/yoko.png", { 50,50}, { 1,1 });
 	lpImgMng.GetID("時計", "image/clock0.png");
 	lpImgMng.GetID("1プレイヤー待機"		, "image/Idlemini.png"		, { 1500 / 15, 92}, { 15,1 });
 	lpImgMng.GetID("2プレイヤー待機"		, "image/Idle2mini.png"		, { 1500 / 15,115}, { 15,1 });
@@ -36,7 +37,7 @@ GameScene::GameScene()
 	sCenter = lpSceneMng.ScreenCenter;
 	sSize = lpSceneMng.ScreenSize;
 
-	_playerList.emplace_back(new Player({ 150.0,lpSceneMng.ScreenCenter.y - 150.0}, { 1500 / 15, 60 }, PLAYER::player1));
+	_playerList.emplace_back(new Player({ 150.0,lpSceneMng.ScreenCenter.y }, { 1500 / 15, 92 }, PLAYER::player1));
 	_playerList.emplace_back(new Player({ 150.0,600.0 }, { 1500 / 15,115 }, PLAYER::player2));
 
 	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenCenter.x , lpSceneMng.ScreenCenter.y + 120 }, { 1366,40 }, GIMMIC::FLOOR }));
@@ -45,13 +46,61 @@ GameScene::GameScene()
 	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenCenter.x , lpSceneMng.ScreenSize.y - 60 }, { 1366,40 }, GIMMIC::FLOOR }));
 	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenCenter.x + lpSceneMng.ScreenSize.x , lpSceneMng.ScreenSize.y - 60 }, { 1366,40 }, GIMMIC::FLOOR }));
 
-	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenSize.x/2+580, lpSceneMng.ScreenSize.y/2+80 }, { 192/3,112 }, GIMMIC::GOAL }));
+	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenSize.x/2+580, lpSceneMng.ScreenSize.y / 2 + 80 }, { 192/3,112 }, GIMMIC::GOAL }));
 
-	for (double y = 0;y * 150 <= sSize.y; y+=1)
+	for (double y = 0;y * 50 <= sSize.y; y+=1)
 	{
-		_objList.emplace_back(new Gimmic({ { -80 ,y * 150 }, { 150,150 }, GIMMIC::HASHIRA }));
-		_objList.emplace_back(new Gimmic({ { sSize.x + 80 ,y  * 150}, { 150,150 }, GIMMIC::HASHIRA }));
+		_objList.emplace_back(new Gimmic({ { -50 ,y * 50 }, { 50,50 }, GIMMIC::HASHIRA }));
+		_objList.emplace_back(new Gimmic({ { sSize.x + 50 ,y  * 50}, { 50,50 }, GIMMIC::HASHIRA }));
 	}
+
+	_objList.emplace_back(new Gimmic({ { 300.0 ,sCenter.y + 75}, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { 350.0 ,sCenter.y + 25}, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { 400.0 ,sCenter.y - 25}, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { 450.0 ,sCenter.y - 75}, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { 450.0 ,sCenter.y - 125}, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { 450.0 ,sCenter.y - 175}, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { 450.0 ,sCenter.y - 225}, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { 150.0 ,sCenter.y - 75}, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ {  50.0 ,sCenter.y - 125}, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { 150.0 ,sCenter.y - 275}, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { 200.0 ,sCenter.y - 275}, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { 250.0 ,sCenter.y - 275}, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { 400.0 ,sCenter.y - 275}, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x ,sCenter.y + 75}, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x ,sCenter.y - 225 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x - 50,sCenter.y - 125 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x - 50,sCenter.y - 175 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x - 50,sCenter.y - 225 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x - 50,sCenter.y - 275 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x - 50,sCenter.y - 325 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x - 50,sCenter.y - 375 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 50,sCenter.y + 75}, { 50,50 }, GIMMIC::HASHIRA }));
+	//_objList.emplace_back(new Gimmic({ { sCenter.x + 50,sCenter.y + 25}, { 50,50 }, GIMMIC::HASHIRA }));
+	//_objList.emplace_back(new Gimmic({ { sCenter.x + 50,sCenter.y - 25}, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 50,sCenter.y - 75 }, { 50,50 }, GIMMIC::HASHIRA }));
+
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 100,sCenter.y - 275 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 100,sCenter.y - 75 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 150,sCenter.y - 125 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 150,sCenter.y - 175 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 150,sCenter.y - 225 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 150,sCenter.y - 275 }, { 50,50 }, GIMMIC::HASHIRA }));
+
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 250,sCenter.y - 275 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 350,sCenter.y - 275 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 500,sCenter.y - 275 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 500,sCenter.y - 225 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 500,sCenter.y - 175 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 500,sCenter.y - 125 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 500,sCenter.y -  75 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 500,sCenter.y -  25 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 500,sCenter.y +  25 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 500,sCenter.y +  75 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 550,sCenter.y - 225 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sCenter.x + 600,sCenter.y - 225 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sSize.x - 25,sCenter.y - 75 }, { 50,50 }, GIMMIC::HASHIRA }));
+	_objList.emplace_back(new Gimmic({ { sSize.x - 75,sCenter.y - 75 }, { 50,50 }, GIMMIC::HASHIRA }));
 }
 
 GameScene::~GameScene()
@@ -88,9 +137,6 @@ unique_Base GameScene::Update(unique_Base own)
 
 	Draw();
 	/*lpSceneMng.AddDrawQue({ IMAGE_ID("時計")[0], lpSceneMng.ScreenCenter.x + 600, lpSceneMng.ScreenCenter.y - 330, 0.0, 1, LAYER::SYSTEM });*/
-	
-
-
 
 	return own;
 }
@@ -101,14 +147,13 @@ bool GameScene::CheckHit(Vector2Dbl pos, Vector2Dbl size)
 	{
 		Vector2Dbl Opos = data->GetPos();
 		Vector2Dbl Osize = data->GetSize();
-		if (abs(pos.x - Opos.x) <= size.x / 2 + Osize.x / 2
-			&&
-			abs(pos.y - Opos.y) <= size.y / 2 + Osize.y / 2 )
+		if ((Opos.x - Osize.x / 2 <= pos.x) && (Opos.x + Osize.x / 2 >= pos.x)
+			&& (Opos.y - Osize.y / 2 <= pos.y) && (Opos.y + Osize.y / 2 >= pos.y))
 		{
-			return false;
+			return true;
 		}
 	}
-	return true;
+	return false;
 }
 
 
@@ -127,5 +172,12 @@ void GameScene::Draw()
 	{
 		(*data).Draw();
 	}
+
+	Hide();
+}
+
+void GameScene::Hide()
+{
+	/*DrawBox(0,0,sSize.x,sCenter.y + 100,0xffffff,true);*/
 }
 

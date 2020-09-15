@@ -12,6 +12,7 @@ public:
 	bool CheckHit(Vector2Dbl pos,Vector2Dbl size);
 private:
 	void Draw();
+	void Hide();
 	Vector2Dbl sCenter;
 	Vector2Dbl sSize;
 	std::vector<sharedObj> _objList;

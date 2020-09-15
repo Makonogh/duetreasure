@@ -38,13 +38,20 @@ void Player::Update(sharedObj & objlist)
 {
 	PlayerCount++;
 	Vector2Dbl RotPos = _pos;
+
+	dir.left  = GameScene().CheckHit({ _pos.x - _size.x / 2,_pos.y }, _size);
+	dir.up    = GameScene().CheckHit({ _pos.x,_pos.y - _size.y / 2 }, _size);
+	dir.down  = GameScene().CheckHit({ _pos.x ,_pos.y + _size.y / 2 }, _size);
+	dir.right = GameScene().CheckHit({ _pos.x + _size.x / 2,_pos.y }, _size);
+
 	if (_player == PLAYER::player1)
 	{
 		if (lpInput.state(INPUT_ID::RIGHT1).first != 0)
 		{
 			_state = STATE::DASH1;
 			RotPos.x += PLAYER_SPEED;
-			if (GameScene().CheckHit(RotPos, _size))
+			/*if (GameScene().CheckHit(RotPos, _size))*/
+			if(!dir.right)
 			{
 				_pos.x += PLAYER_SPEED;
 			}
@@ -53,7 +60,8 @@ void Player::Update(sharedObj & objlist)
 		{
 			_state = STATE::REDASH1;
 			RotPos.x -= PLAYER_SPEED;
-			if (GameScene().CheckHit(RotPos, _size))
+			/*if (GameScene().CheckHit(RotPos, _size))*/
+			if (!dir.left)
 			{
 				_pos.x -= PLAYER_SPEED;
 			}
@@ -69,7 +77,8 @@ void Player::Update(sharedObj & objlist)
 		{
 			_state = STATE::DASH2;
 			RotPos.x += PLAYER_SPEED;
-			if (GameScene().CheckHit(RotPos, _size))
+			/*if (GameScene().CheckHit(RotPos, _size))*/
+			if (!dir.right)
 			{
 				_pos.x += PLAYER_SPEED;
 			}
@@ -78,7 +87,8 @@ void Player::Update(sharedObj & objlist)
 		{
 			_state = STATE::REDASH2;
 			RotPos.x -= PLAYER_SPEED;
-			if (GameScene().CheckHit(RotPos, _size))
+			/*if (GameScene().CheckHit(RotPos, _size))*/
+			if (!dir.left)
 			{
 				_pos.x -= PLAYER_SPEED;
 			}
@@ -137,38 +147,42 @@ void Player::Update(sharedObj & objlist)
 	//	}
 	//}
 	//--------------------------------------------------------------------------------------
+
 	if (_player == PLAYER::player1)
 	{
-		if (lpInput.state(INPUT_ID::BTN_2).first == 1 && lpInput.state(INPUT_ID::BTN_2).second == 0 && _jumpFlag == false)
+		if (lpInput.state(INPUT_ID::BTN_2).first == 1 && lpInput.state(INPUT_ID::BTN_2).second == 0 && _jumpFlag == false && dir.down)
 		{
 			_jumpFlag = true;
-
 		}
 		if (_jumpFrame <= 15 && _jumpFlag)
 		{
 			RotPos.y -= 20;
-			if (GameScene().CheckHit(RotPos, _size))
+			/*if (GameScene().CheckHit(RotPos, _size))*/
+			if(!dir.up)
 			{
 				_pos.y -= 20;
 			}
 			_jumpFrame++;
 		}
+		else if (_jumpFlag)
+		{
+			if (dir.down)
+			{
+				_jumpFlag = false;
+			}
+		}
 		else
 		{
-			_jumpFlag = false;
 			_jumpFrame = 0;
 		}
 	}
 	else
 	{
-		if (lpInput.state(INPUT_ID::BTN_4).first == 1 && lpInput.state(INPUT_ID::BTN_4).second == 0 && _jumpFlag == false)
-		{
-
-		}
+		
 	}
 
 	RotPos.y += G;
-	if (GameScene().CheckHit(RotPos, _size))
+	if (!dir.down)
 	{
 		_pos.y += G;
 	}
@@ -226,4 +240,9 @@ void Player::Init(void)
 		data.emplace_back(IMAGE_ID("2プレイヤー反転ダッシュ")[i], (i + 1) * 1);
 	}
 	SetAnim(STATE::REDASH2, data);
+
+	dir.up = false;
+	dir.down = false;
+	dir.left = false;
+	dir.right = false;
 }

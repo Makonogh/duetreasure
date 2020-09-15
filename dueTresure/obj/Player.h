@@ -13,6 +13,14 @@ enum class PLAYER
 	MAX
 };
 
+struct Dir
+{
+	bool up;
+	bool down;
+	bool right;
+	bool left;
+};
+
 class Player :
 	public Obj
 {
@@ -24,6 +32,7 @@ public:
 	bool GetJudge();
 	bool _jumpFlag;
 	int _jumpFrame;
+	Dir dir;
 private:
 	void Init(void);
 	PLAYER _player;
