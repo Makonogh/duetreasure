@@ -25,6 +25,8 @@ GameScene::GameScene()
 	lpImgMng.GetID("2プレイヤーダッシュ"	, "image/Run2.png"		, { 2000 / 20,115 }, { 20,1 });
 	lpImgMng.GetID("2プレイヤー反転ダッシュ", "image/ReRun2.png"	, { 2000 /20,115 }, { 20,1 });
 
+	lpImgMng.GetID("ゴール"					, "image/goal.png"		, { 192 / 3, 112}, { 3,1 });
+
 	// 初期で必要なリストのセット
 	//_bgList.emplace_back(new GameBG({ GAME_BG_TYPE::BASE,lpSceneMng.ScreenCenter,lpSceneMng.ScreenSize}));
 	//_bgList.emplace_back(new GameBG({ GAME_BG_TYPE::BASE,
@@ -42,6 +44,8 @@ GameScene::GameScene()
 	
 	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenCenter.x , lpSceneMng.ScreenSize.y - 60 }, { 1366,40 }, GIMMIC::FLOOR }));
 	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenCenter.x + lpSceneMng.ScreenSize.x , lpSceneMng.ScreenSize.y - 60 }, { 1366,40 }, GIMMIC::FLOOR }));
+
+	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenSize.x/2 , lpSceneMng.ScreenSize.y/2 }, { 192/3,112 }, GIMMIC::GOAL }));
 
 	for (double y = 0;y * 150 <= sSize.y; y+=1)
 	{
@@ -84,7 +88,7 @@ unique_Base GameScene::Update(unique_Base own)
 
 	Draw();
 	/*lpSceneMng.AddDrawQue({ IMAGE_ID("時計")[0], lpSceneMng.ScreenCenter.x + 600, lpSceneMng.ScreenCenter.y - 330, 0.0, 1, LAYER::SYSTEM });*/
-
+	
 
 
 
@@ -113,7 +117,7 @@ void GameScene::Draw()
 {
 	lpSceneMng.AddDrawQue({ IMAGE_ID("ゲーム背景")[0],sCenter.x / 2,sCenter.y ,0.0,INT_MAX, LAYER::BG });
 	lpSceneMng.AddDrawQue({ IMAGE_ID("ゲーム背景")[0],sSize.x,sCenter.y ,0.0,INT_MAX, LAYER::BG });
-
+	
 	for (auto data : _objList)
 	{
 		(*data).Draw();

@@ -57,5 +57,10 @@ void Gimmic::Init()
 		data.emplace_back(IMAGE_ID("床ブロック")[0], 0);
 		SetAnim(STATE::NORMAL1, data);
 		break;
+	case GIMMIC::GOAL:
+		data.reserve(1);
+		data.emplace_back(IMAGE_ID("ゴール")[0], 0);
+		SetAnim(STATE::NORMAL1, data);
+		break;
 	}
 }

@@ -6,6 +6,7 @@ enum class GIMMIC
 	FLOOR,				// è∞
 	HASHIRA,
 	BLOCK,
+	GOAL,
 	GIMMIC_MAX,
 };
 
