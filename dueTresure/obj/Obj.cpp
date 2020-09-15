@@ -1,6 +1,5 @@
 #include "Obj.h"
-
-
+#include "Scene/GameScene.h"
 
 Obj::Obj()
 {

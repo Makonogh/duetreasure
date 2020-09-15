@@ -181,11 +181,11 @@ void Player::Update(GameScene& data)
 		Vector2Dbl lpos = _pos;
 		if (lpInput.state(INPUT_ID::UP2).first != 0)
 		{
-			_pos.y -= 4;
+			data.LposUp();
 		}
 		if (lpInput.state(INPUT_ID::DOWN2).first != 0)
 		{
-			_pos.y += 4;
+			data.LposDown();
 		}
 		data.SetLpos(lpos);
 	}

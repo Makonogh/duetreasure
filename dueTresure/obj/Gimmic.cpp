@@ -1,6 +1,7 @@
 #include "Gimmic.h"
 #include "common/ImgMng.h"
 #include <cmath>
+#include "Scene/GameScene.h"
 
 Gimmic::Gimmic()
 {

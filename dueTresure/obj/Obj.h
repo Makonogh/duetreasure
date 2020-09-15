@@ -3,9 +3,10 @@
 #include <memory>
 #include <map>
 #include "common/Vector2.h"
-#include "Scene\SceneMng.h"
-class Obj;
+#include "Scene/SceneMng.h"
 
+class Obj;
+class GameScene;
 enum class STATE
 {
 	NORMAL1,		// PL1’Êíó‘Ô

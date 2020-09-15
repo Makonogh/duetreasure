@@ -9,24 +9,25 @@
 #include <iostream>
 #include <vector>
 #include "DxLib.h"
+#include "TitleScene.h"
 
 
 GameScene::GameScene()
 {
 	// ｹﾞｰﾑで使う画像の読み込み
-	lpImgMng.GetID("ゲーム背景"				, "image/gameback.png");
-	lpImgMng.GetID("床"						, "image/floor.png"		, { 1366,40 }, {1,1});
-	lpImgMng.GetID("柱"						, "image/hasira.png", { 50,50 }, { 1,1 });
-	lpImgMng.GetID("床ブロック"				, "image/yoko.png", { 50,50}, { 1,1 });
+	lpImgMng.GetID("ゲーム背景", "image/gameback.png");
+	lpImgMng.GetID("床", "image/floor.png", { 1366,40 }, { 1,1 });
+	lpImgMng.GetID("柱", "image/hasira.png", { 50,50 }, { 1,1 });
+	lpImgMng.GetID("床ブロック", "image/yoko.png", { 50,50 }, { 1,1 });
 	lpImgMng.GetID("時計", "image/clock0.png");
-	lpImgMng.GetID("1プレイヤー待機"		, "image/Idlemini.png"		, { 1500 / 15, 92}, { 15,1 });
-	lpImgMng.GetID("2プレイヤー待機"		, "image/Idle2mini.png"		, { 1500 / 15,115}, { 15,1 });
-	lpImgMng.GetID("1プレイヤーダッシュ"	, "image/Run.png"		, { 1500 / 15, 92 }, { 15,1 });
-	lpImgMng.GetID("1プレイヤー反転ダッシュ", "image/ReRun.png"		, { 1500 / 15, 92 }, { 15,1 });
-	lpImgMng.GetID("2プレイヤーダッシュ"	, "image/Run2.png"		, { 2000 / 20,115 }, { 20,1 });
-	lpImgMng.GetID("2プレイヤー反転ダッシュ", "image/ReRun2.png"	, { 2000 /20,115 }, { 20,1 });
+	lpImgMng.GetID("1プレイヤー待機", "image/Idlemini.png", { 1500 / 15, 92 }, { 15,1 });
+	lpImgMng.GetID("2プレイヤー待機", "image/Idle2mini.png", { 1500 / 15,115 }, { 15,1 });
+	lpImgMng.GetID("1プレイヤーダッシュ", "image/Run.png", { 1500 / 15, 92 }, { 15,1 });
+	lpImgMng.GetID("1プレイヤー反転ダッシュ", "image/ReRun.png", { 1500 / 15, 92 }, { 15,1 });
+	lpImgMng.GetID("2プレイヤーダッシュ", "image/Run2.png", { 2000 / 20,115 }, { 20,1 });
+	lpImgMng.GetID("2プレイヤー反転ダッシュ", "image/ReRun2.png", { 2000 / 20,115 }, { 20,1 });
 
-	lpImgMng.GetID("ゴール"					, "image/goal.png"		, { 192 / 3, 112}, { 3,1 });
+	lpImgMng.GetID("ゴール", "image/goal.png", { 192 / 3, 112 }, { 3,1 });
 
 	// 初期で必要なリストのセット
 	//_bgList.emplace_back(new GameBG({ GAME_BG_TYPE::BASE,lpSceneMng.ScreenCenter,lpSceneMng.ScreenSize}));
@@ -36,6 +37,7 @@ GameScene::GameScene()
 	//_bgList.emplace_back(new GameBG({ GAME_BG_TYPE::CLOCK,lpSceneMng.ScreenCenter,lpSceneMng.ScreenSize }));
 	sCenter = lpSceneMng.ScreenCenter;
 	sSize = lpSceneMng.ScreenSize;
+	lpos = { 150.0, lpSceneMng.ScreenCenter.y + 55 };
 
 	_playerList.emplace_back(new Player({ 150.0,lpSceneMng.ScreenCenter.y + 55}, { 1500 / 15 - 30.0, 80 }, PLAYER::player1));
 	_playerList.emplace_back(new Player({ 150.0,600.0 }, { 1500 / 15 - 30.0,100 }, PLAYER::player2));
@@ -46,7 +48,7 @@ GameScene::GameScene()
 	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenCenter.x , lpSceneMng.ScreenSize.y - 60 }, { 1366,40 }, GIMMIC::FLOOR }));
 	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenCenter.x + lpSceneMng.ScreenSize.x , lpSceneMng.ScreenSize.y - 60 }, { 1366,40 }, GIMMIC::FLOOR }));
 
-	_objList.emplace_back(new Gimmic({ { sSize.x - 50, sCenter.y + 55}, { 0,0 }, GIMMIC::GOAL }));
+	_objList.emplace_back(new Gimmic({ { sSize.x - 50, sCenter.y + 65}, { 0,0 }, GIMMIC::GOAL }));
 
 	for (double y = 0;y * 50 <= sSize.y + 200 ; y+=1)
 	{
@@ -125,6 +127,11 @@ unique_Base GameScene::Update(unique_Base own)
 		(*data).Update(*this);
 	}
 
+	if (Clear())
+	{
+		return std::make_unique<TitleScene>();
+	}
+
 	for (auto data : _objList)
 	{
 		auto itr = std::remove_if(_objList.begin(), _objList.end(), [](sharedObj& obj) {return obj->GetJudge(); });
@@ -159,10 +166,34 @@ bool GameScene::CheckHit(Vector2Dbl pos, Vector2Dbl size)
 
 void GameScene::SetLpos(Vector2Dbl pos)
 {
-	lpos = pos;
+	lpos.x = pos.x;
 }
 
+void GameScene::LposUp()
+{
+	if (lpos.y - 100 >= 0)
+	{
+		lpos.y -= 4;
+	}
+}
 
+void GameScene::LposDown()
+{
+	if (lpos.y + 100 <= sCenter.y + 120)
+	{
+		lpos.y += 4;
+	}
+}
+
+bool GameScene::Clear()
+{
+	Vector2Dbl pos = _playerList[0]->GetPos();
+	if (pos.x > sSize.x - 50 && pos.y >= sCenter.y + 65)
+	{
+		return true;
+	}
+	return false;
+}
 
 void GameScene::Draw()
 {

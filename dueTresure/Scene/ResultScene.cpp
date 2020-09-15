@@ -85,10 +85,10 @@ unique_Base ResultScene::Update(unique_Base own)
 			break;
 	}
 
-	//if (lpInput.state(INPUT_ID::SELECT).first == 1 && lpInput.state(INPUT_ID::SELECT).second == 0)
-	//{
-	//	return std::make_unique<TitleScene>();
-	//}
+	if (lpInput.state(INPUT_ID::SELECT).first == 1 && lpInput.state(INPUT_ID::SELECT).second == 0)
+	{
+		return std::make_unique<TitleScene>();
+	}
 
 	for (auto data : _bgList)
 	{
