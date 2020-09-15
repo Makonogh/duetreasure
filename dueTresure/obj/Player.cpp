@@ -186,6 +186,50 @@ void Player::Update(sharedObj & objlist)
 	{
 		_pos.y += G;
 	}
+
+
+	//if (_player == PLAYER::player1)
+	//{
+	//	if (lpInput.state(INPUT_ID::BTN_2).first == 1 && lpInput.state(INPUT_ID::BTN_2).second == 0 && _jumpFlag == false /*&& dir.down*/)
+	//	{
+	//		_jumpFlag = true;
+	//		_velocity.y = INIT_VELOCITY;
+	//	}
+	//	float g = G;
+	//	float flameTime = FLAME_TIME;
+	//	flameTime *= g;		//(G * FLAME_TIME)
+	//	if (_jumpFlag)
+	//	{
+	//		_velocity.y = _velocity.y - flameTime;
+	//		_pos.y -= _velocity.y * FLAME_TIME;
+	//		if (dir.up)
+	//		{
+	//			//_pos.y -= 20;
+	//		}
+	//		_jumpFrame++;
+	//	}
+	//	else if (!_jumpFlag)
+	//	{
+	//		if (dir.down)
+	//		{
+	//			_jumpFlag = true;
+	//		}
+	//	}
+	//	else
+	//	{
+	//		//_jumpFrame = 0;
+	//	}
+	//}
+	//else
+	//{
+
+	//}
+
+	//RotPos.y += G;
+	//if (!dir.down)
+	//{
+	//	_pos.y += G;
+	//}
 }
 
 
