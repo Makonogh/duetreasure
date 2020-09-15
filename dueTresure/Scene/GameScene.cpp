@@ -234,9 +234,9 @@ Vector2Dbl GameScene::corPos(Vector2Dbl pos)
 	{
 		Vector2Dbl Opos = data->GetPos();
 		Vector2Dbl Osize = data->GetSize();
-		if (Opos.y > pos.y )
+		if (Opos.y > pos.y)
 		{
-			if ((Opos.y - Osize.y / 2 <= pos.y) && (Opos.y + Osize.y / 2 >= pos.y))
+			if ((Opos.y - Osize.y / 2 <= pos.y + 5) && (Opos.y + Osize.y / 2 >= pos.y + 5))
 			{
 				coPos.y = Opos.y - Osize.y / 2;
 				return coPos;
