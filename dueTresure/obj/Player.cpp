@@ -191,10 +191,7 @@ void Player::Update(GameScene& data)
 	//}
 
 	//RotPos.y += G;
-	//if (!dir.down)
-	//{
-	//	_pos.y += G;
-	//}
+
 
 
 	if (_player == PLAYER::player1)
@@ -222,6 +219,7 @@ void Player::Update(GameScene& data)
 
 			if (dir.down && _velocity.y < 0)
 			{
+				_pos = data.corPos(_pos);
 				_jumpFlag = false;
 				_velocity.y = 0;
 			}
@@ -237,7 +235,11 @@ void Player::Update(GameScene& data)
 	}
 	else
 	{
-			Vector2Dbl lpos = _pos;
+		if (!dir.down)
+		{
+			_pos.y += G;
+		}	
+		Vector2Dbl lpos = _pos;
 		if (lpInput.state(INPUT_ID::UP2).first != 0)
 		{
 			data.LposUp();

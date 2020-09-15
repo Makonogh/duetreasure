@@ -129,7 +129,7 @@ unique_Base GameScene::Update(unique_Base own)
 
 	if (Clear())
 	{
-		return std::make_unique<TitleScene>();
+		return std::make_unique<ResultScene>();
 	}
 
 	for (auto data : _objList)
@@ -222,7 +222,26 @@ void GameScene::Hide()
 	DrawBox(0, 0, sSize.x, sCenter.y + 125, 0x000000, true);
 	SetDrawBlendMode(DX_BLENDMODE_SUB, 255);
 	DrawCircle(lpos.x,lpos.y,100,0x000000,true);
+	DrawCircle(sSize.x - 50, sCenter.y + 65, 75, 0x000000, true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	lpSceneMng.AddDrawQue({ hideScreen,sCenter.x,sCenter.y - 140,0.0,INT_MAX, LAYER::UI });
+}
+
+Vector2Dbl GameScene::corPos(Vector2Dbl pos)
+{
+	Vector2Dbl coPos = pos;
+	for (auto data : _objList)
+	{
+		Vector2Dbl Opos = data->GetPos();
+		Vector2Dbl Osize = data->GetSize();
+		if (Opos.y > pos.y )
+		{
+			if ((Opos.y - Osize.y / 2 <= pos.y) && (Opos.y + Osize.y / 2 >= pos.y))
+			{
+				coPos.y = Opos.y - Osize.y / 2;
+				return coPos;
+			}
+		}
+	}
 }
 

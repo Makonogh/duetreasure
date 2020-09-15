@@ -10,6 +10,7 @@ public:
 	~GameScene();
 	unique_Base Update(unique_Base own);
 	bool CheckHit(Vector2Dbl pos,Vector2Dbl size);
+	Vector2Dbl corPos(Vector2Dbl pos);
 	void SetLpos(Vector2Dbl pos);
 	void LposUp();
 	void LposDown();
@@ -17,6 +18,7 @@ public:
 private:
 	void Draw();
 	void Hide();
+	
 	Vector2Dbl lpos;
 	int hideScreen;
 	Vector2Dbl sCenter;
