@@ -62,5 +62,7 @@ void Gimmic::Init()
 		data.emplace_back(IMAGE_ID("ÉSÅ[Éã")[0], 0);
 		SetAnim(STATE::NORMAL1, data);
 		break;
+	default:
+		break;
 	}
 }
