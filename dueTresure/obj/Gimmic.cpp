@@ -59,12 +59,11 @@ void Gimmic::Init()
 		break;
 	case GIMMIC::GOAL:
 		data.reserve(1);
-		/*for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			data.emplace_back(IMAGE_ID("ƒS[ƒ‹")[i], (i + 1) * 1);
 		}
-		SetAnim(STATE::NORMAL1, data);*/
-		data.emplace_back(IMAGE_ID("ƒS[ƒ‹")[0], 0);
+		SetAnim(STATE::NORMAL1, data);
 		break;
 	default:
 		break;

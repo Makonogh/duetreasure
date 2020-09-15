@@ -25,7 +25,7 @@ GameScene::GameScene()
 	lpImgMng.GetID("2プレイヤーダッシュ"	, "image/Run2.png"		, { 2000 / 20,115 }, { 20,1 });
 	lpImgMng.GetID("2プレイヤー反転ダッシュ", "image/ReRun2.png"	, { 2000 /20,115 }, { 20,1 });
 
-	lpImgMng.GetID("ゴール"					, "image/goal2.png"		, { 192 / 3, 112}, { 3,1 });
+	lpImgMng.GetID("ゴール"					, "image/goal.png"		, { 192 / 3, 112}, { 3,1 });
 
 	// 初期で必要なリストのセット
 	//_bgList.emplace_back(new GameBG({ GAME_BG_TYPE::BASE,lpSceneMng.ScreenCenter,lpSceneMng.ScreenSize}));
