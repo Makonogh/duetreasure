@@ -39,8 +39,8 @@ GameScene::GameScene()
 	sSize = lpSceneMng.ScreenSize;
 	lpos = { 150.0, lpSceneMng.ScreenCenter.y + 55 };
 
-	_playerList.emplace_back(new Player({ 150.0,lpSceneMng.ScreenCenter.y + 55}, { 1500 / 15 - 30.0, 80 }, PLAYER::player1));
-	_playerList.emplace_back(new Player({ 150.0,600.0 }, { 1500 / 15 - 30.0,100 }, PLAYER::player2));
+	_playerList.emplace_back(new Player({ 150.0,lpSceneMng.ScreenCenter.y + 55}, { 1500 / 15 - 30.0, 92 }, PLAYER::player1));
+	_playerList.emplace_back(new Player({ 150.0,600.0 }, { 1500 / 15 - 30.0,122 }, PLAYER::player2));
 
 	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenCenter.x , lpSceneMng.ScreenCenter.y + 120 }, { 1366,40 }, GIMMIC::FLOOR }));
 	_objList.emplace_back(new Gimmic({ { lpSceneMng.ScreenCenter.x + lpSceneMng.ScreenSize.x , lpSceneMng.ScreenCenter.y + 120 }, { 1366,40 }, GIMMIC::FLOOR }));
@@ -215,11 +215,11 @@ void GameScene::Draw()
 
 void GameScene::Hide()
 {
-	hideScreen = MakeScreen(sSize.x, sCenter.y + 120,true);
+	hideScreen = MakeScreen(sSize.x, sCenter.y + 125,true);
 	SetDrawScreen(hideScreen);
 	ClearDrawScreen();
 	
-	DrawBox(0, 0, sSize.x, sCenter.y + 120, 0x000000, true);
+	DrawBox(0, 0, sSize.x, sCenter.y + 125, 0x000000, true);
 	SetDrawBlendMode(DX_BLENDMODE_SUB, 255);
 	DrawCircle(lpos.x,lpos.y,100,0x000000,true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);

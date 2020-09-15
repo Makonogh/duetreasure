@@ -235,6 +235,19 @@ void Player::Update(GameScene& data)
 			}
 		}
 	}
+	else
+	{
+			Vector2Dbl lpos = _pos;
+		if (lpInput.state(INPUT_ID::UP2).first != 0)
+		{
+			data.LposUp();
+		}
+		if (lpInput.state(INPUT_ID::DOWN2).first != 0)
+		{			
+			data.LposDown();
+		}
+		data.SetLpos(lpos);
+	}
 }
 
 
