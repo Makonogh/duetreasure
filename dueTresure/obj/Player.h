@@ -20,9 +20,10 @@ public:
 	Player();
 	Player(Vector2Dbl pos, Vector2Dbl size,PLAYER pl);
 	~Player();
-	void Update(sharedObj& objlist, std::vector<sharedBG> & bglist) override;
+	void Update(sharedObj& objlist) override;
 	bool GetJudge();
 	bool _jumpFlag;
+	int _jumpFrame;
 private:
 	void Init(void);
 	PLAYER _player;

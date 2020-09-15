@@ -4,6 +4,8 @@
 enum class GIMMIC
 {
 	FLOOR,				// è∞
+	HASHIRA,
+	BLOCK,
 	GIMMIC_MAX,
 };
 
@@ -16,7 +18,7 @@ public:
 	Gimmic();
 	Gimmic(GIMMIC_DATA data);
 	void Update();
-	void Update(sharedObj& list, std::vector<sharedBG>& bglist);
+	void Update(sharedObj& list);
 	void Draw();
 	bool GetJudge();
 	~Gimmic();

@@ -9,8 +9,12 @@ public:
 	GameScene();
 	~GameScene();
 	unique_Base Update(unique_Base own);
+	bool CheckHit(Vector2Dbl pos,Vector2Dbl size);
 private:
+	void Draw();
+	Vector2Dbl sCenter;
+	Vector2Dbl sSize;
 	std::vector<sharedObj> _objList;
-	std::vector<sharedBG> _bgList;
+	std::vector<sharedObj> _playerList;
 };
 

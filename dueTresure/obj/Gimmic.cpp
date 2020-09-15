@@ -20,17 +20,8 @@ void Gimmic::Update()
 {
 }
 
-void Gimmic::Update(sharedObj& list, std::vector<sharedBG>& bglist)
+void Gimmic::Update(sharedObj& list)
 {
-	if ((lpInput.state(INPUT_ID::RIGHT1).first != 0) && (lpInput.state(INPUT_ID::RIGHT2).first != 0))
-	{
-		_pos.x -= 5;
-	}
-
-	if (_pos.x <= - _size.x / 2)
-	{
-		_judge = true;
-	}
 }
 
 void Gimmic::Draw()
@@ -49,8 +40,22 @@ Gimmic::~Gimmic()
 void Gimmic::Init()
 {
 	AnimVector data;
-
-	data.reserve(1);
-	data.emplace_back(IMAGE_ID("°")[0], 0);
-	SetAnim(STATE::NORMAL1, data);
+	switch (_type)
+	{
+	case GIMMIC::FLOOR:
+		data.reserve(1);
+		data.emplace_back(IMAGE_ID("°")[0], 0);
+		SetAnim(STATE::NORMAL1, data);
+		break;
+	case GIMMIC::HASHIRA:
+		data.reserve(1);
+		data.emplace_back(IMAGE_ID("’Œ")[0], 0);
+		SetAnim(STATE::NORMAL1, data);
+		break;
+	case GIMMIC::BLOCK:
+		data.reserve(1);
+		data.emplace_back(IMAGE_ID("°ƒuƒƒbƒN")[0], 0);
+		SetAnim(STATE::NORMAL1, data);
+		break;
+	}
 }

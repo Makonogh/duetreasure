@@ -13,7 +13,7 @@ BaseScene::~BaseScene()
 void BaseScene::SelectPath()//vectorŒ^ _menuList
 {
 	//Œˆ’è
-	if (lpInput.state(INPUT_ID::SELECT).first == 1 && lpInput.state(INPUT_ID::SELECT).second == 0)
+	if (lpInput.state(INPUT_ID::BTN_2).first == 1 && lpInput.state(INPUT_ID::BTN_2).second == 0)
 	{
 		if (SelectCheck == 0)
 		{

@@ -9,7 +9,7 @@ Obj::~Obj()
 {
 }
 
-void Obj::Update(sharedObj & list, std::vector<sharedBG> & bglist)
+void Obj::Update(sharedObj & list)
 {
 }
 
@@ -63,6 +63,11 @@ bool Obj::SetAnim(const STATE state, AnimVector & data)
 Vector2Dbl Obj::GetPos()
 {
 	return _pos;
+}
+
+Vector2Dbl Obj::GetSize()
+{
+	return _size;
 }
 
 bool Obj::GetJudge()

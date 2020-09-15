@@ -36,14 +36,14 @@ class Obj
 public:
 	Obj();
 	virtual ~Obj();
-	virtual void Update(sharedObj& list, std::vector<sharedBG> & bglist);
+	virtual void Update(sharedObj& list);
 	virtual void Update();
 	void Draw(void);
 	void Draw(int id);
 	bool SetAnim(const STATE state, AnimVector& data);	// アニメーションのセット
 
 	Vector2Dbl GetPos();
-
+	Vector2Dbl GetSize();
 	int PlayerCount;									// プレイヤー用アニメーションフレーム
 	unsigned int _animCount;							// 見出しから何回ﾙｰﾌﾟしてるか
 	unsigned int _animFrame;							// なんﾌﾚｰﾑか
