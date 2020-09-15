@@ -19,7 +19,7 @@ public:
 	Gimmic();
 	Gimmic(GIMMIC_DATA data);
 	void Update();
-	void Update(sharedObj& list);
+	void Update(GameScene& data);
 	void Draw();
 	bool GetJudge();
 	~Gimmic();

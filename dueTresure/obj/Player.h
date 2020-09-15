@@ -28,7 +28,7 @@ public:
 	Player();
 	Player(Vector2Dbl pos, Vector2Dbl size,PLAYER pl);
 	~Player();
-	void Update(sharedObj& objlist) override;
+	void Update(GameScene& data) override;
 	bool GetJudge();
 	bool _jumpFlag;
 	int _jumpFrame;

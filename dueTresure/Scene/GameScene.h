@@ -11,6 +11,7 @@ public:
 	unique_Base Update(unique_Base own);
 	bool CheckHit(Vector2Dbl pos,Vector2Dbl size);
 	void SetLpos(Vector2Dbl pos);
+	
 private:
 	void Draw();
 	void Hide();

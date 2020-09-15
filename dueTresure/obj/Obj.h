@@ -4,7 +4,6 @@
 #include <map>
 #include "common/Vector2.h"
 #include "Scene\SceneMng.h"
-
 class Obj;
 
 enum class STATE
@@ -36,7 +35,7 @@ class Obj
 public:
 	Obj();
 	virtual ~Obj();
-	virtual void Update(sharedObj& list);
+	virtual void Update(GameScene& data);
 	virtual void Update();
 	void Draw(void);
 	void Draw(int id);

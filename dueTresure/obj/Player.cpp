@@ -34,7 +34,7 @@ Player::~Player()
 {
 }
 
-void Player::Update(sharedObj & objlist)
+void Player::Update(GameScene& data)
 {
 	PlayerCount++;
 	Vector2Dbl RotPos = _pos;
@@ -178,7 +178,16 @@ void Player::Update(sharedObj & objlist)
 	}
 	else
 	{
-		
+		Vector2Dbl lpos = _pos;
+		if (lpInput.state(INPUT_ID::UP2).first != 0)
+		{
+			_pos.y -= 4;
+		}
+		if (lpInput.state(INPUT_ID::DOWN2).first != 0)
+		{
+			_pos.y += 4;
+		}
+		data.SetLpos(lpos);
 	}
 
 	RotPos.y += G;

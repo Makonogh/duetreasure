@@ -20,7 +20,7 @@ void Gimmic::Update()
 {
 }
 
-void Gimmic::Update(sharedObj& list)
+void Gimmic::Update(GameScene& data)
 {
 }
 

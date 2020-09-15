@@ -122,7 +122,7 @@ unique_Base GameScene::Update(unique_Base own)
 	//}
 	for (auto data : _playerList)
 	{
-		(*data).Update(_playerList.front());
+		(*data).Update(*this);
 	}
 
 	for (auto data : _objList)

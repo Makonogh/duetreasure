@@ -1,6 +1,7 @@
 #include "Obj.h"
 
 
+
 Obj::Obj()
 {
 }
@@ -9,7 +10,7 @@ Obj::~Obj()
 {
 }
 
-void Obj::Update(sharedObj & list)
+void Obj::Update(GameScene& data)
 {
 }
 
