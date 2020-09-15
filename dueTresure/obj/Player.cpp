@@ -148,90 +148,46 @@ void Player::Update(GameScene& data)
 	//}
 	//--------------------------------------------------------------------------------------
 
-	if (_player == PLAYER::player1)
-	{
-		if (lpInput.state(INPUT_ID::BTN_2).first == 1 && lpInput.state(INPUT_ID::BTN_2).second == 0 && _jumpFlag == false && dir.down)
-		{
-			_jumpFlag = true;
-		}
-		if (_jumpFrame <= 15 && _jumpFlag)
-		{
-			RotPos.y -= 20;
-			/*if (GameScene().CheckHit(RotPos, _size))*/
-			if(!dir.up)
-			{
-				_pos.y -= 20;
-			}
-			_jumpFrame++;
-		}
-		else if (_jumpFlag)
-		{
-			if (dir.down)
-			{
-				_jumpFlag = false;
-			}
-		}
-		else
-		{
-			_jumpFrame = 0;
-		}
-	}
-	else
-	{
-		Vector2Dbl lpos = _pos;
-		if (lpInput.state(INPUT_ID::UP2).first != 0)
-		{
-			data.LposUp();
-		}
-		if (lpInput.state(INPUT_ID::DOWN2).first != 0)
-		{
-			data.LposDown();
-		}
-		data.SetLpos(lpos);
-	}
-
-	RotPos.y += G;
-	if (!dir.down)
-	{
-		_pos.y += G;
-	}
-
-
 	//if (_player == PLAYER::player1)
 	//{
-	//	if (lpInput.state(INPUT_ID::BTN_2).first == 1 && lpInput.state(INPUT_ID::BTN_2).second == 0 && _jumpFlag == false /*&& dir.down*/)
+	//	if (lpInput.state(INPUT_ID::BTN_2).first == 1 && lpInput.state(INPUT_ID::BTN_2).second == 0 && _jumpFlag == false && dir.down)
 	//	{
 	//		_jumpFlag = true;
-	//		_velocity.y = INIT_VELOCITY;
 	//	}
-	//	float g = G;
-	//	float flameTime = FLAME_TIME;
-	//	flameTime *= g;		//(G * FLAME_TIME)
-	//	if (_jumpFlag)
+	//	if (_jumpFrame <= 15 && _jumpFlag)
 	//	{
-	//		_velocity.y = _velocity.y - flameTime;
-	//		_pos.y -= _velocity.y * FLAME_TIME;
-	//		if (dir.up)
+	//		RotPos.y -= 20;
+	//		/*if (GameScene().CheckHit(RotPos, _size))*/
+	//		if(!dir.up)
 	//		{
-	//			//_pos.y -= 20;
+	//			_pos.y -= 20;
 	//		}
 	//		_jumpFrame++;
 	//	}
-	//	else if (!_jumpFlag)
+	//	else if (_jumpFlag)
 	//	{
 	//		if (dir.down)
 	//		{
-	//			_jumpFlag = true;
+	//			_jumpFlag = false;
 	//		}
 	//	}
 	//	else
 	//	{
-	//		//_jumpFrame = 0;
+	//		_jumpFrame = 0;
 	//	}
 	//}
 	//else
 	//{
-
+	//	Vector2Dbl lpos = _pos;
+	//	if (lpInput.state(INPUT_ID::UP2).first != 0)
+	//	{
+	//		data.LposUp();
+	//	}
+	//	if (lpInput.state(INPUT_ID::DOWN2).first != 0)
+	//	{
+	//		data.LposDown();
+	//	}
+	//	data.SetLpos(lpos);
 	//}
 
 	//RotPos.y += G;
@@ -239,6 +195,46 @@ void Player::Update(GameScene& data)
 	//{
 	//	_pos.y += G;
 	//}
+
+
+	if (_player == PLAYER::player1)
+	{
+		if (lpInput.state(INPUT_ID::BTN_2).first == 1 && lpInput.state(INPUT_ID::BTN_2).second == 0 && _jumpFlag == false /*&& dir.down*/)
+		{
+			_jumpFlag = true;
+			_velocity.y = INIT_VELOCITY;
+		}
+		float g = G;
+		float flameTime = FLAME_TIME;
+		flameTime *= g;		//(G * FLAME_TIME)
+		if (_jumpFlag)
+		{
+			_velocity.y = _velocity.y - flameTime;
+			if (_velocity.y < -50)
+			{
+				_velocity.y = -50;
+			}
+			_pos.y -= _velocity.y * FLAME_TIME;
+			if (dir.up && _velocity.y > 0)
+			{
+				_velocity.y = _velocity.y * (-1);
+			}
+
+			if (dir.down && _velocity.y < 0)
+			{
+				_jumpFlag = false;
+				_velocity.y = 0;
+			}
+
+		}
+		else if (!_jumpFlag)
+		{
+			if (!dir.down)
+			{
+				_jumpFlag = true;
+			}
+		}
+	}
 }
 
 
